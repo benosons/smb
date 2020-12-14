@@ -1,0 +1,139 @@
+<style>
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 36px;
+        padding: 7px 12px;
+        font-size: 13px;
+        line-height: 1.5384616;
+        color: #333333;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #0fbdbc;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #009688;
+        border-color: #0fbfbf;
+    }
+
+    .input-group-addon:first-child {
+        border-right: 0;
+        border-left: 0;
+        border-top: 0;
+        border-color: #ffffff;
+    }
+    
+    .border-bottoms{
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+</style>
+
+<div class="page-container">
+    <div class="content-wrapper">
+    
+        <!-- Content area -->
+		<div class="content">
+
+            <!-- Square thumbs -->
+            <h6 class="content-group text-semibold">
+                Materi
+                <small class="display-block">Menampilkan data <code>materi</code> component</small>
+                <span class="pull-right" style="margin-top: -35px;">
+                    <span  id="btn-add-add" class="btn btn-success btn-icon btn-lg" data-popup="lightbox"><i class="icon-plus2"></i></span>
+                    <span  id="btn-backs" class="btn btn-default btn-icon btn-lg"  style="display:none;" data-popup="lightbox"><i class="icon-chevron-left"></i> kembali</span>
+                </span>
+            </h6>
+            
+            <div id="contentList" class="panel panel-flat">
+                
+                <div class="panel-body">
+
+                    <div class="table-responsiveS">
+
+                        <table class="table data-list table-stripped table-lg datatable-dom-position table-hover" id="data-list2">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center text-muted" style="width: 30px;">#No</th> 
+                                    <th>Attachments</th>
+                                    <th>Title</th>
+                                    <th>File Size</th>
+                                    <th>CreateDate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="contentAdd" class="panel panel-flat" style="display:none;">
+                
+                <div class="panel-body">
+
+                    <fieldset class="content-group">
+                        <legend class="text-bold"> Materi input form</legend>
+                    </fieldset>
+
+
+                    <div class="container">
+                        <form class="form-horizontal" action="#" id="form-data" style="margin-top:0px;"  enctype="multipart/form-data" type="post">
+                            <div class="form-group row border-bottoms">
+                                <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Title:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="titleMater">
+                                </div>
+                            </div>
+
+                            <div class="form-group row border-bottoms">
+
+                                <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Apah ?</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="descMateri" name="editor-full" id="editor-full" rows="2" cols="2"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row border-bottoms">
+
+                                <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">File Upload:</label>
+
+                                <div class="col-sm-10">
+                                    <input type="file" name="fileupload" id="fileupload" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="text-right">
+                                <span type="submit" id="simpanMateri" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></span>
+                            </div>
+                            
+                        </form>
+                    </div>
+                
+                </div>
+
+            </div>
+          
+        </div>
+        
+    </div>
+</div>
+
+<div id="modal-video"  role="dialog" class="modal fade" tabindex="-9999999" style="margin-top:5%;">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="col-lg-12">
+            <div class="isv"></div>
+        </div>
+    </div>
+</div>

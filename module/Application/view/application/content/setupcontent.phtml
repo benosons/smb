@@ -1,0 +1,790 @@
+<style>
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 36px;
+        padding: 7px 12px;
+        font-size: 13px;
+        line-height: 1.5384616;
+        color: #333333;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #0fbdbc;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #009688;
+        border-color: #0fbfbf;
+    }
+
+    
+    .thCenterText{
+        vertical-align: middle !important;
+        text-align: center !important;
+        /* color: #fff !important; */
+        font-weight:600 !important;
+    }
+
+    .tbBorder-left{
+        border-left: 2px solid #ccc;
+    }
+
+    .tbBorder-right{
+        border-right: 2px solid #ccc;
+    }
+
+    .tdCenterText{
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .bgtd1{
+        background: antiquewhite !important;
+    }
+
+    .tdBorder-left{
+        border-left: 2px solid #22222226;
+    }
+
+    .tdBorder-right{
+        border-right: 2px solid #22222226;
+    }
+
+    .alink-Red{
+        color: #E91E63;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .bold-600{
+        font-weight: 600;
+    }
+
+    .bgHeader{
+        /* background:#362F4B !important; */
+    }
+
+    .thLeftText{
+        vertical-align: middle !important;
+        /* color: #fff !important; */
+        font-weight:600 !important;
+    }
+	
+    .border-bottoms{
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        background-color: #fff !important;
+        color: #222 !important;
+        padding: 8px 30px 8px 20px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        background-color: #fff;
+        border: 1px solid #ccc !important;
+        border-radius: 4px;
+    }
+
+    .ui-pnotify.stack-custom-left {
+        top: 200px;
+        left: 200px;
+        right: auto;
+        bottom: auto;
+        top: 500px !important;
+        left: 10px !important;
+    }
+
+    .card .card-block .sub-title {
+        font-size: 11px !important;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .sub-title {
+        top: 10px !important;
+        padding-bottom: 0px !important;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        border-bottom: 0px solid transparent !important;
+        font-weight: 500 !important;
+        color: #2c3e50;
+    }
+
+    .input-group-addon:first-child {
+        border-right: 0;
+        border-left: 0;
+        border-top: 0;
+        border-color: #0fbdbc;
+    }
+    .ui-slider-warning .ui-slider-range, .ui-slider-solid.ui-slider-danger .ui-slider-handle {
+        background-color: #FF9800 !important;
+        border-color: #FFEB3B !important;
+    }
+
+    
+/* checkbox */
+input[type="checkbox"] {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  background: white;
+  height: 26px;
+  width: 26px;
+  border: 2px solid #607D8B;
+}
+
+input[type="checkbox"]:checked {
+  background: #ffffff;
+}
+
+input[type="checkbox"]:hover {
+  filter: brightness(90%);
+}
+
+input[type="checkbox"]:disabled {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+input[type="checkbox"]:after {
+  content: '';
+  position: relative;
+  left: 40%;
+  top: 20%;
+  width: 25%;
+  height: 40%;
+  border: solid #607D8B;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+input[type="checkbox"]:disabled:after {
+  border-color: #7b7b7b;
+}
+
+</style>
+
+<div class="page-container">
+    <div class="content-wrapper">
+    
+        <!-- Content area -->
+		<div class="content">
+            <div class="content-group">
+
+                <div class="page-header page-header-default has-cover" style="border: 1px solid #ddd; border-bottom: 0;">
+                    <div class="page-header-content">
+                        <div class="page-title">
+                            <h5>
+                                <i class="icon-arrow-left52 position-left"></i>
+                                <span class="text-semibold">Management Survey</span> 
+                                <small class="display-block">Setup formulir</small>
+                            </h5>
+                        <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+
+                        <div class="heading-elements">
+                            <button class="btn btn-link btn-icon btn-sm heading-btn legitRipple"><i class="icon-gear"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="icon-home2 position-left"></i> Formulir</a></li>
+                            <li class="active"><a href="#">Setup</a></li>
+                        </ul>
+                        <ul class="breadcrumb-elements">
+							<li><a href="#" id="refreshX"><i class=" icon-database4 position-left"></i> Refresh</a></li>
+							<li><a href="#" class="pratinjauX"><i class=" icon-lan position-left"></i> Lihat Survey</a></li>
+						</ul>
+                    </div>
+                </div>
+                
+				<div class="panel panel-flat">
+                    <div class="panel-body">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                                <li class="active"><a href="#bottom-justified-tab1" data-toggle="tab"><i class="icon icon-stack2"></i> Features  </a></li>
+                                <!-- <li class=""><a href="#bottom-justified-Elem" id="bottom-justified-eleX"data-toggle="tab"><i class="icon icon-stack2"></i> Elements  </a></li> -->
+                                <li><a href="#bottom-justified-data" id="bottom-justified-dataX" data-toggle="tab"><i class="icon icon-database4"></i> Stored  </a></li>
+                                <!-- <li><a href="#bottom-justified-tab2" data-toggle="tab">Sortir </a></li> -->
+                                <li><a href="#bottom-justified-setting" id="bottom-justified-settingX" data-toggle="tab"><i class="icon icon-cogs"></i> Settings </a></li>
+                            </ul>
+
+                            
+
+                            <div class="tab-content">
+
+                                <div class="tab-pane active" id="bottom-justified-tab1">
+                                    <p class="content-group-lg">
+                                        Contoh Control bentuk standar yang didukung dalam tata letak formulir contoh. Control formulir  secara otomatis menerima beberapa gaya global. 
+                                        Beberapa tipe control  <code>&lt;input&gt;</code>, <code>&lt;radio&gt;</code>, <code>&lt;textarea&gt;</code>, dan <code>&lt;select&gt;</code> dengan .format disetel ke lebar: 100%; secara default. Label  dalam 
+                                        group untuk penspasian optimal dalam bentuk horizontal.
+                                    </p>
+                                    <form class="form-horizontal" action="#" id="formparam">
+                                        <fieldset class="content-group">
+                                            <legend class="text-bold">Basic inputs</legend>
+                                            
+
+                                            <div class="tabbable nav-tabs-vertical nav-tabs-left">
+                                                <ul class="nav nav-tabs nav-tabs-highlight">
+                                                    <li class="active"><a href="#left-tab0" id="bottom-justified-intros" data-toggle="tab"><i class="icon-code position-left"></i> Intro</a></li>
+                                                    <li><a href="#left-tab1"  id="asTemplate" data-toggle="tab"><i class="icon-database-menu position-left"></i> Template</a></li>
+                                                    <li ><a href="#left-tab2" id="bottom-justified-eleX" data-toggle="tab"><i class="icon-color-sampler position-left"></i> Rules</a></li>
+                                                    <li ><a href="#left-tab7" id="bottom-justified-sort" data-toggle="tab"><i class="icon-sort-numeric-asc position-left"></i> Sorting</a></li>
+                                                    <li><a href="#left-tab3" id="bottom-justified-matheri" data-toggle="tab"><i class="icon-files-empty position-left"></i> Materi</a></li>
+                                                </ul>
+
+                                                <div class="tab-content">
+
+                                                    <div class="tab-pane active has-padding" id="left-tab0">
+                                                        <p><b>TAB FEATURES</b></p>
+                                                        <p>Sub tabs <code> Template</code> digunakan untuk membuat kerangka pertanyaan (builder).</p>
+                                                        <p>Sub tabs <code> Rules</code> digunakan untuk mengatur <code> Bobot, Jawaban </code> dan <code>Tingkat kesulitan</code> pada setiap pertanyaan.</p>
+                                                        <p>Sub tabs <code> Materi</code> digunakan sebagai <code>Referensi</code> pada formulir.</p>
+                                                        <hr>
+                                                        <p><b>TAB STORED</b></p>
+                                                        <p>Berisikan data hasil dari pengisian <code>Formulir</code></p>
+                                                        <hr>
+                                                        <p><b>TAB PENGATURAN</b></p>
+                                                        <p>Digunakan untuk mengatur/menyetel aturan pada setiap <code>Formulir</code>.</p>
+                                                    </div>
+
+                                                    <div class="tab-pane has-padding" id="left-tab1">
+
+                                                        <div class="form-group">
+                                                            <span id="" class="pull-right btn btn-xs addmoreHeader btn-info add_field_butto col-xs-12 col-lg-12" type="span"> <i class="icon-plus-circle2"></i><b> Tambah Pertanyaan</b></span>	
+                                                        </div>
+                                                                
+                                                         <span class="headerObject"></span>                                                         
+
+                                                        <div class="text-right">
+                                                            <span type="submit" id="saved" class="btn btn-primary">Simpan <i class="icon-arrow-right14 position-right"></i></span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="tab-pane has-padding" id="left-tab2">
+
+                                                        <div class="panel panel-flat">
+                                                            <div class="panel-heading">
+                                                                <legend class="">Level Score</legend>
+                                                                <div class="heading-elements">
+                                                                    <ul class="icons-list">
+                                                                        <li><a data-action="collapse" class=""></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+							
+                                                            <div class="panel-body" style="margin-top: -30px;">
+                                                                <p>Inputan dibawah ini digunakan untuk mengatur <code>bobot</code> soal berdasarkan level. Inputan bobot harus berupa <code>angka</code> tidak boleh menggunakan <code>huruf/charcater</code>.</p>
+
+                                                                <span class="thisLevelBo"></span>
+
+                                                                <div style="margin-top:20px;"><p>Inputan dibawah ini akan menset bobot 1 <code>Formulir</code>,  jika anda malas  setup yang atas.</p></div>
+
+                                                                <span class="thisLevelBo2"></span>
+
+                                                                <div class="form-group" style="margin-top: 10px;">
+                                                                    <span id="saveBobots" class="pull-right btn btn-xs  btn-info col-xs-12 col-lg-12" type="span"> <i class="icon-plus-circle2"></i><b> Simpan</b></span>	
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel panel-flat ">
+                                                            <div class="panel-heading">
+                                                                <legend class="">list of questions</legend>
+                                                                <div class="heading-elements">
+                                                                    <ul class="icons-list">
+                                                                        <li><a data-action="collapse" class=""></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="panel-body" style="margin-top: -30px;">
+                                                                <p>Tabel dibawah ini merupakan hasil dari build pada tab <code>template</code>. Pada kolom <code>correct answer</code> dan <code>level</code> jika terjadi perubahan akan langsung tersimpan ke <code>database</code>, berhati-hatilah saat melakukan perubahan data.</p>
+
+                                                                <table class="table data-list table-stripped table-lg datatable-dom-position table-hover" id="data-list2">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col" class="text-center text-muted" style="width: 30px;">#No</th> 
+                                                                            <th><input type="checkbox" onClick="selectall(this)"/> </th>
+                                                                            <th>Question label</th>
+                                                                            <th>Text option</th>
+                                                                            <th>Value option</th>
+                                                                            <th>Correct answer</th>
+                                                                            <th>Level</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    
+                                                    <div class="tab-pane has-padding" id="left-tab7">
+
+                                                        <div class="panel-body">
+
+                                                            <div class="col-sm-12">
+                                                                <div class="panel panel-white border-top-info"  style="/*box-shadow: 7px 10px 20px #d8d1d1;*/">
+                                                                    <div class="panel-body" style="padding-top: 30px;padding-bottom: 50px;">
+                                                                        
+                                                                        <p class="content-group">Enable a group of DOM elements to be sortable. Click on and drag an element to a new spot within the list, and the other items will adjust to fit. By default, sortable items share draggable properties.</p>
+
+                                                                        <div class="col-sm-1">
+
+                                                                            <div class="numSorting"></div>
+
+                                                                        </div>
+
+                                                                        <div class="col-sm-11">
+                                                                            <div class="text-center">
+                                                                                <ul class="selectable-demo-list" id="sortable-list-basic" style="width: 90%;">
+                                                                                    
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="text-right">
+                                                                <span type="submit" id="simpanSort" onclick="getValues()" class="btn btn-primary">Simpan <i class="icon-arrow-right14 position-right"></i></span>
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="tab-pane has-padding" id="left-tab3" style="margin-top: -52px;">
+
+                                                        <div class="panel-body">
+                                                            <div class="tabbable">
+
+                                                                <ul class="nav nav-lg  nav-tabs nav-tabs-top nav-justified">
+                                                                    <li class="active"><a href="#sub2-justified-tab1"  id="sub2-justified-tab1x" data-toggle="tab"><span class="label label-danger position-left">Data</span> Materi</a></li>
+                                                                    <li><a href="#sub2-justified-tab2" id="sub2-justified-tab2x" data-toggle="tab"><span class="label label-info position-left">Data</span> Mapping</a></li>                                                                    
+                                                                </ul>
+
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane active" id="sub2-justified-tab1">
+
+                                                                        <table class="table data-list3 table-stripped table-lg datatable-dom-position table-hover" id="data-list3">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col" class="text-center text-muted" style="width: 30px;">#No</th> 
+                                                                                    <th>Check</th>
+                                                                                    <th>Title</th>
+                                                                                    <th>File Size</th>
+                                                                                    <th>CreateDate</th>
+                                                                                    <th>Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+
+                                                                    </div>
+
+                                                                    <div class="tab-pane" id="sub2-justified-tab2">
+                                                                    
+                                                                        <table class="table data-list4 table-stripped table-lg datatable-dom-position table-hover" id="data-list4">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col" class="text-center text-muted" style="width: 30px;">#No</th> 
+                                                                                    <th>Check</th>
+                                                                                    <th>Title</th>
+                                                                                    <th>File Size</th>
+                                                                                    <th>CreateDate</th>
+                                                                                    <th>Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane" id="bottom-justified-Elem">
+
+                                    <div class="page-body">
+                                        <div class="card">
+
+                                            <p class="content-group-lg">
+                                                Row <code>correct answer</code> digunakan untuk jawaban benar pada setiap pertanyaan.
+                                                Row <code>difficult</code> digunakan untuk sebagai <code>label</code> tingkat kesulitan.
+                                                Row <code>bobot</code> digunakan untuk mengatur  <code>nilai</code> standar pertanyaan jika benar.
+                                            </p>
+
+                                            <form class="form-horizontal" action="#" id="12x" >
+                                                <fieldset class="content-group">
+                                                    <legend class="text-bold"><i class="icon icon-gear"></i> Elements</legend>
+                                                </fieldset>
+                                            </form>
+                                                                                
+                                            <div class="card-block" id="">
+
+                                                <div class="table-responsive">
+
+                                                    <table class="table table-hover table-striped isEleQuiz">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Question label</th>
+                                                                <th scope="col">Text option</th>
+                                                                <th scope="col">Value option</th>
+                                                                <th scope="col">Correct answer</th>
+                                                                <th scope="col">Difficult</th>
+                                                                <th scope="col">Bobot</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="bottom-justified-data">
+                                    <!-- Task manager table -->
+                                    <table class="table data-list table-lg hover" id="data-list">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center text-muted" style="width: 30px;">#</th> 
+                                                <th>Nama</th>
+                                                <th>Pertanyaan</th> 
+                                                <th>Jawaban</th> 
+                                                <th>Tanggal</th> 
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+
+                                <div class="tab-pane" id="bottom-justified-setting">
+                                   
+                                       
+                                    <div class="page-body">
+                                        <div class="card">
+
+                                            <form class="form-horizontal" action="#" id="1x" style="margin-top:50px;">
+                                                <fieldset class="content-group">
+                                                    <legend class="text-bold"><i class="icon icon-gear"></i> Setelan Umum</legend>
+                                                </fieldset>
+                                            </form>
+                                                                                
+                                            <div class="card-block" id="searchbody">
+
+                                                <form>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Judul</label>
+                                                        <div class="col-sm-10" >
+                                                            <input type="text" class="form-control" id="valueJudul">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Deskripsi</label>
+                                                        <div class="col-sm-10" >
+                                                            <input type="text" class="form-control" id="valueDeskripsi">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title" style="letter-spacing: 0px !important;5px !important;">Publish</label>
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <span id="publishRadio"></span>
+
+                                                            <div class="form-group row" id="linkTautanPrivate" style="display:none;">
+                                                                <label class="col-sm-1 col-form-label sub-title" style="letter-spacing: 0px !important;5px !important;">
+                                                                    Link:
+                                                                </label>
+                                                                
+                                                                <div class="col-sm-11">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="icon-link"></i></span>
+                                                                        <span id="linkRef"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Public:</b> 
+                                                                    Formulir akan diterbitkan di website halaman utama secara public/umum, dapat dilihat dan di sunting oleh siapa saja.
+                                                                </div>
+                                                                <div><b style="font-weight: 600;">Private:</b> Formulir hanya dapat dilihat oleh user yang mempunyai <code>Link</code> atau <code>Tautan</code>.</div>
+                                                                <div><b style="font-weight: 600;">Non Aktif:</b> Formulir tidak dapat dilihat maupun disunting.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Masa Aktif</label>
+                                                        <div class="col-sm-6">
+
+                                                            <div class="col-sm-5">
+                                                                <span id="masaAktif"></span>
+                                                            </div>
+
+                                                            <div class="col-sm-1 masaaktifField" style="display:none;">
+                                                                <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">End:</label>
+                                                            </div>
+
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group masaaktifField"  style="display:none;">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+                                                                        <input type="text" class="form-control daterange-single" value="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                            
+                                                        </div>
+                                                        
+
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <b>Info:</b> Jika <code>Aktif</code> akan menampilkan formulir survey dari publish sampai tanggal waktu yang telah ditetapkan.
+                                                                Batas waktu akan berjalan pada pukul <code>00:00</code> dini hari.
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Batas pengisian</label>
+                                                        <div class="col-sm-10"  style="margin-top: 10px;">
+
+                                                            <span id="radioBatasIsi"></span>
+                                                            <span class="help-block">
+                                                                <b>Info:</b> Default user hanya dapat mengisi <code>satu kali</code>.
+                                                            </span>
+                                                        </div>
+                                                        <!-- <div class="col-sm-4">
+                                                            <b>Info:</b> Default user hanya dapat mengisi satu kali.
+                                                        </div> -->
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Jumlah Pertanyaan</label>
+                                                        <div class="col-sm-10">
+                                                            <span class="help-block">
+                                                                Menampilkan jumlah pertanyaan <code>perhalaman</code>.
+                                                            </span>
+                                                            <input type="hidden" class="form-control" id="limitx"/>
+                                                            <div class="sampeu ui-slider-labels"></div>
+                                                        </div>
+                                                        <!-- <div class="col-sm-4">
+                                                            <b>Info:</b> Menampilkan jumlah pertanyaan perhalaman.
+                                                        </div> -->
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Privasi</label>
+                                                        <div class="col-sm-2" >
+                                                            <span id="privasiRadio"></span>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Public:</b> Formulir dapat diubah oleh siapa saja.</div>
+                                                                <div><b style="font-weight: 600;">Private:</b> Formulir tidak dapat dilihat maupun diubah, kecuali oleh <code>Admin Master/User pembuat</code>.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                </form>
+
+                                                <form class="form-horizontal" action="#" id="3bx" style="margin-top:50px;">
+                                                    <fieldset class="content-group">
+                                                        <legend class="text-bold"><i class="icon icon-gear"></i> Setelan Quiz</legend>
+                                                    </fieldset>
+                                                </form>
+
+                                                <form>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Tipe Quiz</label>
+                                                        <div class="col-sm-10">
+                                                            <span id="radioTipeQuizTemp"></span>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Tipe:</b> Jenis <code>formulir</code> pertanyaan.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Tipe Bobot</label>
+                                                        <div class="col-sm-10">
+                                                            <span id="radioTipeBobotTemp"></span>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Aktif:</b> Untuk mengatur value bobot / skor nilai  dapat dilakukan pada menu/tab <code> Templates > Rules</code> pada bagian <code>SCORE</code>.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Soal Pilihan</label>
+                                                        <div class="col-sm-10">
+                                                            <span id="radioStatusSoalTemp"></span>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Aktif:</b> Untuk mengatur pertanyaan <code>aktif/tidak</code> dapat dilakukan pada menu/tab <code> Templates > Rules</code>.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Sorting Soal</label>
+                                                        <div class="col-sm-10">
+                                                            <span id="radioSortingSoalTemp"></span>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div><b style="font-weight: 600;">Random:</b> Pertanyaan akan ditampilkan secara <code>acak</code>.</div>
+                                                                <div><b style="font-weight: 600;">Manual:</b> Pertanyaan akan disortir berdasarkan rule yang anda buat pada menu atau tab <code>Features > Sorting</code>.</div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Tampilkan Materi</label>
+                                                        <div class="col-sm-10">
+                                                            <span id="radioViewMateriTemp"></span>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <span class="help-block">
+                                                                <div>Jika <code>YA</code> dipilih maka bantuan atau referensi akan muncul pada formulir pertanyaan.<code>formulir</code> pertanyaan.</div>
+                                                                <div>Untuk mengatur dan memappingkan referensi dapat dilakukan pada tab/menu <code>Templates > Materi</code>, jika ingin menambahkan referensi baru dapat dilakukan pada <code>MENU Materi.</code></div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+                                                <form class="form-horizontal" action="#" id="2x" style="margin-top:50px;">
+                                                    <fieldset class="content-group">
+                                                        <legend class="text-bold"><i class="icon icon-color-sampler"></i> Opsi Tema</legend>
+                                                    </fieldset>
+                                                </form>
+
+                                                <form>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">View Header</label>
+                                                        <div class="col-sm-4">
+                                                            <span id="radioBatasViewHeaderTemp"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Warna Header</label>
+                                                        <div class="col-sm-2">
+                                                            <span id="headerColor"></span>
+                                                        </div>
+
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Warna Latar belakang</label>
+                                                        <div class="col-sm-2">
+                                                            <span id="backColor"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Teks Judul</label>
+                                                        <div class="col-sm-2">
+                                                            <span id="viewJudulTemp"></span>
+                                                        </div>
+
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Teks Deskripsi</label>
+                                                        <div class="col-sm-2">
+                                                            <span id="viewDeskripsiTemp"></span>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="form-group row border-bottoms">
+                                                        <label class="col-sm-2 col-form-label sub-title sub-title" style="letter-spacing: 0px !important;5px !important;">Ukuran Layout</label>
+                                                        <div class="col-sm-4">
+                                                            <span id="radioLayoutTemp"></span>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+
+                                            <!-- PAGE CONTENT BEGINS --> 
+                                        
+                                            <!-- PAGE CONTENT ENDS -->
+                                            
+
+                                            </div><!-- /.col -->
+                                        </div><!-- /.page-content -->
+                                    </div>
+                                    
+                                    <div class="text-right">
+                                        <span type="submit"  class="btn btn-default pratinjauX">Lihat Survey <i class="icon-lan position-right"></i></span>
+                                        <span type="submit" id="simpanPengaturan" class="btn btn-primary">Terapkan <i class="icon-arrow-right14 position-right"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-video"  role="dialog" class="modal fade" tabindex="-9999999" style="margin-top:5%;">
+        <div class="modal-dialog modal-lg" role="dialog">
+            <!-- Modal content-->
+            <div class="col-lg-12">
+                <div class="isv"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

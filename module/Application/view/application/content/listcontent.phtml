@@ -1,0 +1,119 @@
+<style>
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 36px;
+        padding: 7px 12px;
+        font-size: 13px;
+        line-height: 1.5384616;
+        color: #333333;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #0fbdbc;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #009688;
+        border-color: #0fbfbf;
+    }
+
+    .input-group-addon:first-child {
+        border-right: 0;
+        border-left: 0;
+        border-top: 0;
+        border-color: #ffffff;
+    }
+
+</style>
+
+<div class="page-container">
+    <div class="content-wrapper">
+    
+        <!-- Content area -->
+		<div class="content">
+
+            <!-- Square thumbs -->
+            <h6 class="content-group text-semibold">
+                Square survey
+                <small class="display-block">Menampilkan data <code>survey</code> component</small>
+                <span class="pull-right" style="margin-top: -35px;">
+                    <span  id="btn-add-add" class="btn btn-success btn-icon btn-lg" data-popup="lightbox"><i class="icon-plus2"></i></span>
+                </span>
+            </h6>
+
+            
+
+            </div>
+
+          
+        </div>
+        
+</div>
+
+<div id="modal-add-visit"  role="dialog" class="modal fade" tabindex="-9999999" style="margin-top:5%;">
+    <div class="modal-dialog" role="dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background: url(../../../img/reds.jpg); height: 150px; background-position: right;">
+                <h4 class="modal-title red" style="font-size: 30px;color: white;  margin-top: 60px;">Memulai Formulir Baru
+                    <br> <span class="pull-right"></span>
+                </h4>
+            </div>
+            
+            <div class="modal-body">
+            
+                <form class="" id="formmen" method="post"  enctype="multipart/form-data">                    
+
+                    <div class="form-group" style="padding-bottom: 10px;">
+
+                        <label class="display-block" for="form-field-select-1" style="font-size:18px;">Type Formulir <span class="middle red"></span></label>
+
+                        <div style="padding: 10px;">
+                            <div class="col-md-6">
+                                <label class="boxForm">
+                                    <input type="radio" value="1" name="typeFormulir" class="control-info" >
+                                    Kuesioner 
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-center boxForm">
+                                    <input type="radio" value="2" name="typeFormulir" class="control-info">
+                                    Quiz
+                                </label>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-1" style="font-size:18px;">Judul <span class="middle red"></span></label>
+                        <input class="form-control required" id="judul" name="keterangan" placeholder="Masukan judul"></input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-1" style="font-size:18px;">Deskripsi <span class="middle red"></span></label>
+                        <input class="form-control required" id="keterangan" name="keterangan" placeholder="Masukan deskripsi"></input>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-lg btn-success" id="" onclick="saveForm();">
+                    <i class="icon-checkmark2"></i>
+                    Simpan
+                </button>
+                <button class="btn btn-lg" id="btncancel" data-dismiss="modal">
+                    <i class="icon-cross3"></i>
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

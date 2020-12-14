@@ -1,0 +1,126 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+
+<?= $this->doctype() ?>
+
+<?php
+//   $csrf = '';
+//   if (!empty($SESSION['_KHANSIA'])) {
+//     $csrf = $SESSION['_KHANSIA']['csrf_token'];
+//   }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Language" content="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="csrf-token" content="<?= $csrf ?>"> -->
+
+    <?= $this->headTitle('Login Boxed - ArchitectUI HTML Bootstrap 4 Dashboard Template')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico']) ?>
+
+    <link href="<?php $this->basePath();?>/assets/css/main.css" rel="stylesheet"></head>
+
+    <script type="text/javascript" src="<?php $this->basePath();?> /action-js/global-js/crypto.js"></script>
+</head>
+<style>
+    .container {
+      height: 100%;
+      position: relative;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .bg-amoeba {
+      background-image: linear-gradient(135deg, #ffffff 0%, #f3f3f3 100%) !important;
+    }
+</style>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100 bg-amoeba bg-animation">
+                <div class="d-flex h-100 justify-content-center align-items-center">
+                    <div class="mx-auto app-login-box col-md-8">
+                        <div class="mx-auto mb-3">
+                          <img class="logoitb" src="<?php $this->basePath()?>/img/titlelogo.png" alt="">
+                        </div>
+                        <div class="modal-dialog w-100 mx-auto">
+                            <div class="modal-content" style="color: #3f6ad8;border: 2px solid #8aa1dc;">
+                                <div class="modal-body">
+                                    <div class="h5 modal-title text-center">
+                                        <h4 class="mt-2">
+                                            <div><b>SMB Performance</b></div>
+                                            <div><b>Dashboard</b></div>
+                                            <br/>
+                                            <span>Please Login To Your Account.</span>
+                                        </h4>
+                                    </div>
+                                    <form method="post" id="login" action="<?php echo $this->basePath()?>/user/authenticate">
+                                        <div class="form-row">
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    <input name="username" id="username" placeholder="username" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    <input name="passwd" id="examplePassword" placeholder="Password" type="password" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="token_keamanan" value="<?php if(isset($this->token_keamanan)) { echo $this->token_keamanan; }?>" hidden>
+
+                                        <input type="text" id="key" name="key" value="0" hidden>
+
+                                        <div class="position-relative form-check">
+                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
+                                            <label for="exampleCheck" class="form-check-label">Keep me logged in</label>
+                                        </div>
+                                    <div class="divider"></div>
+                                    <h6 class="mb-0 col text-center"><a href="javascript:void(0);" class="text-primary">Login As</a></h6>
+                                </div>
+                                <div class="modal-footer clearfix">
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg" style="width: 50%;">Login</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                        <div class="text-center text-white opacity-8 mt-3">Copyright © ArchitectUI 2019</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="<?php $this->basePath();?>/assets/scripts/main.js"></script>
+
+</body>
+</html>
