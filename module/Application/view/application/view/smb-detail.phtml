@@ -30,31 +30,42 @@
             </div>
         </div>
     </div>
-    <div class="mbg-3 alert alert-info alert-dismissible fade show" role="alert">
-        <span class="pr-2">
-            <i class="fa fa-question-circle"></i>
-        </span>
-        This dashboard example was created using only the available elements and components, no additional SCSS was
-        written!
-    </div>
 
     <div class="tabs-animation">
         <div class="row">
           <div class="col-md-12">
               <div class="mb-3 card">
                   <div class="card-header-tab card-header">
-                      <ul class="nav" style="margin-right: auto; margin-left: 0;">
-                          <li class="nav-item"><a data-toggle="tab" href="#sales" class="active nav-link">Sales</a></li>
-                          <li class="nav-item"><a data-toggle="tab" href="#product" class="nav-link">Product</a></li>
-                          <li class="nav-item"><a data-toggle="tab" href="#dtp" class="nav-link">DTP</a></li>
-                      </ul>
+                    <div class="card-header-title" style="padding-right: 1rem;">
+                      <div class="widget-content-left">
+                        <div class="d-block text-left">
+                          <a href="javascript:void(0);" onclick="goback()" class="btn-wide btn-shadow btn btn-warning"><span class="lnr lnr-chevron-left"></span> </i>back</a>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="nav" style="margin-right: auto; margin-left: 0;">
+                        <li class="nav-item"><a data-toggle="tab" href="#sales" class="active nav-link">Sales</a></li>
+                        <li class="nav-item"><a data-toggle="tab" id="smb-product" href="#product" class="nav-link">Product</a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#dtp" class="nav-link">DTP</a></li>
+                    </ul>
                   </div>
                   <div class="card-body">
                       <div class="tab-content">
                           <div class="tab-pane active" id="sales" role="tabpanel">
-                            <h5 class="d-inline-block">Sales Performance Dashboard</h5>
+                            <div class="widget-content">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading"><h5 class="d-inline-block">Sales Performance Dashboard</h5></div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" onclick="" class="btn-wide btn-shadow btn btn-warning">Graphic Detail</a>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                 <div class="mb-3 card">
                                   <div class="card-body">
                                     <div class="row">
@@ -62,11 +73,8 @@
                                           <div class="card mb-3 widget-content bg-warning">
                                               <div class="widget-content-wrapper text-white">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Total Orders</div>
-                                                      <div class="widget-subheading">Last year expenses</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-white"><span>1896</span></div>
+                                                      <div class="widget-heading"><h6>Acquisition</h6></div>
+                                                      <div class="widget-subheading">How do potential customer get to know us?</div>
                                                   </div>
                                               </div>
                                           </div>
@@ -75,11 +83,8 @@
                                           <div class="card mb-3 widget-content bg-success">
                                               <div class="widget-content-wrapper text-white">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Clients</div>
-                                                      <div class="widget-subheading">Total Clients Profit</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-white"><span>$ 568</span></div>
+                                                      <div class="widget-heading"><h6>Activation</h6></div>
+                                                      <div class="widget-subheading">How do potential customer try our Product?</div>
                                                   </div>
                                               </div>
                                           </div>
@@ -88,24 +93,18 @@
                                           <div class="card mb-3 widget-content bg-primary">
                                               <div class="widget-content-wrapper text-white">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-white"><span>46%</span></div>
+                                                      <div class="widget-heading"><h6>Retention</h6></div>
+                                                      <div class="widget-subheading">How many potential customer will stick around?</div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content bg-danger">
+                                          <div class="card mb-3 widget-content bg-danger" style="height: 7.3rem;">
                                               <div class="widget-content-wrapper text-white">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-white"><span>46%</span></div>
+                                                      <div class="widget-heading"><h6>Revenue</h6></div>
+                                                      <div class="widget-subheading">How many acctually become customers?</div>
                                                   </div>
                                               </div>
                                           </div>
@@ -114,11 +113,8 @@
                                           <div class="card mb-3 widget-content bg-info">
                                               <div class="widget-content-wrapper text-white">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-white"><span>46%</span></div>
+                                                      <div class="widget-heading"><h6>Referral</h6></div>
+                                                      <div class="widget-subheading">Will those customer invite other potential customers</div>
                                                   </div>
                                               </div>
                                           </div>
@@ -127,71 +123,193 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-8">
                                 <div class="mb-3 card">
                                   <div class="card-body">
                                     <div class="row">
                                       <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content card-btm-border card-shadow-warning border-warning card">
+                                          <div class="card mb-3 widget-content widget-content-new card-btm-border card-shadow-warning border-warning card">
                                               <div class="widget-content-wrapper text-default">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Total Orders</div>
-                                                      <div class="widget-subheading">Last year expenses</div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">Total Traffic</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      348 <small class="opacity-5 pl-1">This Month</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                                   <div class="widget-content-right">
-                                                      <div class="widget-numbers text-default"><span>1896</span></div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">Total POC/ TRIAL</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      98 <small class="opacity-5 pl-1">This Month</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content card-btm-border card-shadow-success border-success card">
+                                          <div class="card mb-3 widget-content widget-content-new card-btm-border card-shadow-success border-success card">
                                               <div class="widget-content-wrapper text-default">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Clients</div>
-                                                      <div class="widget-subheading">Total Clients Profit</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-default"><span>$ 568</span></div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">SIGN UP/ REGISTER USER</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      540 <small class="opacity-5 pl-1">This Month</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content card-btm-border card-shadow-primary border-primary card">
+                                        <div class="row">
+                                          <div class="col-md-6 col-lg-6">
+                                            <div class="card mb-3 widget-content widget-content-new card-btm-border card-shadow-primary border-primary card">
+                                                <div class="widget-content-wrapper text-default">
+                                                    <div class="widget-content-left">
+                                                      <div class="widget-chat-wrapper-outer">
+                                                        <div class="widget-chart-content">
+                                                            <div class="widget-title opacity-5 text-uppercase">ACTIVE USER</div>
+                                                            <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                                <div class="widget-chart-flex align-items-center">
+                                                                        2.7k <small class="opacity-5 pl-1">Monthly</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                      <div class="widget-chat-wrapper-outer">
+                                                        <div class="widget-chart-content">
+                                                            <div class="widget-title opacity-5 text-uppercase">CHURN RATE</div>
+                                                            <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                                <div class="widget-chart-flex align-items-center">
+                                                                        8.12<small class="opacity-5 pl-1">%</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 col-lg-6">
+                                            <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+                                              <tbody>
+                                                  <tr>
+                                                      <td class="text-center" style="width: 80px;">
+                                                          <img width="20" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                      </td>
+                                                      <td class="text-center"><a href="javascript:void(0)">Client A</a></td>
+                                                      <td class="text-center">
+                                                          <div class="badge badge-pill badge-danger">Ranking 1</div>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td class="text-center" style="width: 80px;">
+                                                          <img width="20" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                      </td>
+                                                      <td class="text-center"><a href="javascript:void(0)">Client B</a></td>
+                                                      <td class="text-center">
+                                                          <div class="badge badge-pill badge-danger">Ranking 2</div>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td class="text-center" style="width: 80px;">
+                                                          <img width="20" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                      </td>
+                                                      <td class="text-center"><a href="javascript:void(0)">Client C</a></td>
+                                                      <td class="text-center">
+                                                          <div class="badge badge-pill badge-danger">Ranking 3</div>
+                                                      </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-12 col-lg-12">
+                                          <div class="card mb-3 widget-content widget-content-new card-btm-border card-shadow-danger border-danger card">
                                               <div class="widget-content-wrapper text-default">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">TOTAL REVENUE</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      983 <small class="opacity-5 pl-1">Yearly</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                                   <div class="widget-content-right">
-                                                      <div class="widget-numbers text-default"><span>46%</span></div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">PAID USER</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      266 <small class="opacity-5 pl-1">Yearly</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="widget-content-right">
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">PAID CUSTOMER</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      675 <small class="opacity-5 pl-1">Yearly</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="widget-content-right">
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">PAID PROJECT</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      334 <small class="opacity-5 pl-1">Yearly</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content card-btm-border card-shadow-danger border-danger card">
+                                          <div class="card mb-3 widget-content card-btm-border card-shadow-info border-info card" style="margin-bottom: 23px !important;">
                                               <div class="widget-content-wrapper text-default">
                                                   <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-default"><span>46%</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-12 col-lg-12">
-                                          <div class="card mb-3 widget-content card-btm-border card-shadow-info border-info card">
-                                              <div class="widget-content-wrapper text-default">
-                                                  <div class="widget-content-left">
-                                                      <div class="widget-heading">Followers</div>
-                                                      <div class="widget-subheading">People Interested</div>
-                                                  </div>
-                                                  <div class="widget-content-right">
-                                                      <div class="widget-numbers text-default"><span>46%</span></div>
+                                                    <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content">
+                                                          <div class="widget-title opacity-5 text-uppercase">NEW PROMOTER SCORE</div>
+                                                          <div class="widget-numbers mt-2 fsize-4 mb-0 w-100">
+                                                              <div class="widget-chart-flex align-items-center">
+                                                                      540 <small class="opacity-5 pl-1">Yearly</small>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                               </div>
                                           </div>
@@ -203,18 +321,452 @@
                             </div>
                           </div>
                           <div class="tab-pane" id="product" role="tabpanel">
-                              <p>Like Aldus PageMaker including versions of Lorem. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-                              essentially unchanged. </p>
+                            <div class="widget-content">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading"><h5 class="d-inline-block">Product Performance Dashboard</h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="mb-3 card">
+                                  <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        Platform-Based
+                                    </div>
+                                    <div class="btn-actions-pane-right actions-icon-btn">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-warning">Detail</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Total Platform Usage
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>97.5K</span>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Top Services Type
+                                                  </div>
+                                              </div>
+                                              <div class="card-body">
+                                                  <div class="widget-chart widget-chart2 text-left p-0">
+                                                    <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-center" style="width: 80px;">
+                                                                    <img width="35" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                                </td>
+                                                                <td class="text-center"><a href="javascript:void(0)">Client A</a></td>
+                                                                <td class="text-center">
+                                                                    <div class="badge badge-pill badge-danger">Ranking 1</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center" style="width: 80px;">
+                                                                    <img width="35" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                                </td>
+                                                                <td class="text-center"><a href="javascript:void(0)">Client B</a></td>
+                                                                <td class="text-center">
+                                                                    <div class="badge badge-pill badge-danger">Ranking 2</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center" style="width: 80px;">
+                                                                    <img width="35" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                                </td>
+                                                                <td class="text-center"><a href="javascript:void(0)">Client C</a></td>
+                                                                <td class="text-center">
+                                                                    <div class="badge badge-pill badge-danger">Ranking 3</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center" style="width: 80px;">
+                                                                    <img width="35" class="rounded-circle" src="<?php $this->basePath();?>/assets/images/avatars/4.jpg" alt="">
+                                                                </td>
+                                                                <td class="text-center"><a href="javascript:void(0)">Client C</a></td>
+                                                                <td class="text-center">
+                                                                    <div class="badge badge-pill badge-danger">Ranking 3</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="mb-3 card">
+                                  <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        Web-Based
+                                    </div>
+                                    <div class="btn-actions-pane-right actions-icon-btn">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-warning">Detail</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Latest Total Montly Activity User
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>76</span><i style="font-size:12px;"> user</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-1"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Latest Total Montly Registered User
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>54</span><i style="font-size:12px;"> user</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-2"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="mb-3 card">
+                                  <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        Mobile App-Based
+                                    </div>
+                                    <div class="btn-actions-pane-right actions-icon-btn">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-warning">Detail</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Latest Total Montly Activity User
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>76</span><i style="font-size:12px;"> user</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-3"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Latest Total Montly Registered User
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>54</span><i style="font-size:12px;"> user</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-4"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="mb-3 card">
+                                  <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        Project-Based
+                                    </div>
+                                    <div class="btn-actions-pane-right actions-icon-btn">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-warning">Detail</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Active Project
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>76</span><i style="font-size:12px;"> project</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-5"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6 col-xl-4">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Project Deals
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>54</span><i style="font-size:12px;"> project</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-6"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="mb-3 card">
+                                  <div class="card-header-tab card-header">
+                                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        Service Based
+                                    </div>
+                                    <div class="btn-actions-pane-right actions-icon-btn">
+                                      <div class="d-block text-right">
+                                          <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-warning">Detail</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-12 col-xl-12">
+                                          <div class="mb-3 card">
+                                              <div class="card-header-tab card-header">
+                                                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                                      <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Client per service
+                                                  </div>
+                                              </div>
+                                              <div class="widget-chart widget-chart2 text-left p-0">
+                                                  <div class="widget-chat-wrapper-outer">
+                                                      <div class="widget-chart-content widget-chart-content-lg">
+                                                          <div class="widget-numbers">
+                                                              <div class="widget-chart-flex">
+                                                                  <div>
+                                                                      <span class="opacity-10 text-warning pr-2">
+                                                                          <i class="fa fa-dot-circle"></i>
+                                                                      </span>
+                                                                      <span>76</span><i style="font-size:12px;"> Client</i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                                                          <div id="dashboard-sparkline-2-7"></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div class="tab-pane" id="dtp" role="tabpanel">
-                              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                              type specimen book. It has
-                              survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                            <div class="widget-content">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading"><h5 class="d-inline-block">DTP Performance Dashboard</h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="mb-3 card bg-dark">
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-lg-4 col-xl-4">
+                                        <div class="card mb-3 widget-content bg-dtp">
+                                            <div class="widget-content-wrapper text-white">
+                                                <div class="widget-content-left">
+                                                    <div class="widget-subheading">Total Page Views</div>
+                                                    <div class="widget-heading">Users</div>
+                                                </div>
+                                                <div class="widget-content-right">
+                                                    <div class="widget-numbers text-white"><span>984</span><span style="font-size:12px;"> /month</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-4 col-xl-4">
+                                        <div class="card mb-3 widget-content bg-dtp">
+                                            <div class="widget-content-wrapper text-white">
+                                                <div class="widget-content-left">
+                                                    <div class="widget-subheading">Total Site Traffic</div>
+                                                    <div class="widget-heading">Page Views</div>
+                                                </div>
+                                                <div class="widget-content-right">
+                                                    <div class="widget-numbers text-white"><span>7,605</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-4 col-xl-4">
+                                        <div class="card mb-3 widget-content bg-dtp">
+                                            <div class="widget-content-wrapper text-white">
+                                                <div class="widget-content-left">
+                                                    <div class="widget-heading">Event per ession</div>
+                                                </div>
+                                                <div class="widget-content-right">
+                                                    <div class="widget-numbers text-white"><span>1.247</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-12 col-xl-12">
+                                        <div class="mb-3 card bg-dtp">
+                                            <div class="card-header-tab card-header" style="background: rgb(255 255 255 / 0%);">
+                                                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">Page Views
+                                                </div>
+                                            </div>
+                                            <div class="pt-0 card-body">
+                                                <div id="chart-combined"></div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="d-block text-right card-footer">
-                      <a href="javascript:void(0);" class="btn-wide btn-shadow btn btn-danger">Delete</a>
                   </div>
               </div>
           </div>

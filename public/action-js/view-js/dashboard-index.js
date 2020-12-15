@@ -6,7 +6,6 @@ $(document).ready(function(){
   $('li#li-dashboard', parent.document).addClass('mm-active');
   $('li#li-dashboard > a', parent.document).addClass('mm-active');
 
-
   setTimeout(function(){
     var iframe = window.parent.document.getElementById('dashboard-frame');
     parent.resizeIframe( iframe );
