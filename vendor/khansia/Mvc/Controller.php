@@ -36,7 +36,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 
 	public function getConfig() {
 		return $this->_config;
-	}  
+	}
 
 	public function getDb($module = 'primary') {
 
@@ -47,7 +47,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 
 		  	/* get current config */
 		 	$temp = $this->_config;
-		  
+
 			/* primary connection set? */
 			if (isset($temp['databases'][$module])) {
 
@@ -64,7 +64,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 			  	$schemas = array();
 
 			}
-			
+
 			/* remove unnecessary part from module / namespace */
 			$part 	= explode('\\', strtolower($module));
 
@@ -73,12 +73,12 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 				$min 	= 0;
 				$max 	= count($part) - 1;
 
-				if ($part[0] == 'khansia') { 
-					$min = 1; 
+				if ($part[0] == 'khansia') {
+					$min = 1;
 				}
 
-				if ($max > ($min + 1)) { 
-					$max = $min + 1; 
+				if ($max > ($min + 1)) {
+					$max = $min + 1;
 				}
 
 				$module = $part[$min] . '\\' . $part[$max];
@@ -100,14 +100,14 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 			} elseif($config['driver'] == 'Pdo'){
 
 				$config['dsn'] = 'mysql:dbname=' . $config['schema'] . ';host=' . $config['host'];
-				
+
       		}else {
 			 	/* PGSQL: set dsn */
        			$config['dsn'] = 'pgsql:dbname=' . $config['schema'] . ';host=' . $config['host'];
 			}
-			
+
 			/* return adapter */
-      
+
 			return new \Laminas\Db\Adapter\Adapter($config);
 
 		  } /* config set */
@@ -115,16 +115,16 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 		} /* db null */
 
 		return $this->_db;
-	
+
 	}
-	
+
 	public function getOutput($json) {
 		$response = $this->getResponse();
 		$response->getHeaders()->addHeaderLine('Content-Type', 'application/json');
 		$response->setContent($json);
 		return $response;
 	}
-	
+
 	public function isFieldMandatory($param = null, $colNamed = null){
 
         if(!$param){
@@ -170,10 +170,10 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 				}
 			}
 		}
-		  
+
 	  	return 0;
 	}
-	
+
 	protected function CryptoJSAesEncrypt_salaahhhh($passphrase, $plain_text){
 		// var_dump($plain_text);die;
 		// $plain_text = '{"Request":"login","Username":"123456","API_AccessKey":"b57a4d91965d456","GMT_Timestamp":"101439"}';
@@ -182,25 +182,25 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 		$salt = openssl_random_pseudo_bytes(256);
 		$iv = openssl_random_pseudo_bytes(16);
 		//on PHP7 can use random_bytes() istead openssl_random_pseudo_bytes()
-	
-		$iterations = 999;  
+
+		$iterations = 999;
 		$key = hash_pbkdf2("sha512", $passphrase, $salt, $iterations, 64);
-	
+
 		$encrypted_data = openssl_encrypt($plain_text, 'aes-256-cbc', hex2bin($key), OPENSSL_RAW_DATA, $iv);
-	
+
 		$data = array("ciphertext" => base64_encode($encrypted_data), "iv" => bin2hex($iv), "salt" => bin2hex($salt));
 
 		$json = json_encode($data);
 
-		// $decryption= openssl_decrypt(json_decode($json), 'aes-256-cbc', $key, $options, $decryption_iv); 
+		// $decryption= openssl_decrypt(json_decode($json), 'aes-256-cbc', $key, $options, $decryption_iv);
 
 		$ui = '{"ct":"67ssyy95mf2eedVgVemJsRsq89bPF0atnkUhkppXS+KD1+sLek7ZQLeB+5kKDPHY6XGOqQDB4WNfQ5Ph95o5Fr7HKSjsVOOGhdZxyMT7eompDGTFiXzv5rG8rioS+Wt7WRxEfWsQvsMOk6QrDTvUxQ==","iv":"9a895d59a2bb81878db6d4db43245494","s":"97bd4626d4ffa95a"}';
-		
+
 		print_r(json_encode($data));die;
 	}
 
-	
-	
+
+
 	/**
 	* Decrypt data from a CryptoJS json encoding string
 	*
@@ -209,7 +209,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 	* @return mixed
 	*/
 	protected static function cryptoJsAesDecrypt($passphrase, $jsonString){
-		
+
 		$jsondata = json_decode($jsonString, true);
 		$salt 	  = hex2bin($jsondata["s"]);
 		$ct 	  = base64_decode($jsondata["ct"]);
@@ -230,7 +230,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 
 		$key	 = substr($result, 0, 32);
 		$data 	 = openssl_decrypt($ct, 'aes-256-cbc', $key, true, $iv);
-		
+
 		return json_decode($data);
 
 	}
@@ -256,13 +256,13 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 		$key 			= substr($salted, 0, 32);
 		$iv  			= substr($salted, 32,16);
 		$encrypted_data = openssl_encrypt(json_encode($value), 'aes-256-cbc', $key, true, $iv);
-		
+
 		$data 			= array("ct" => base64_encode($encrypted_data), "iv" => bin2hex($iv), "s" => bin2hex($salt));
-		
-		return json_encode($data);		
+
+		return json_encode($data);
 
 	}
-	
+
 
 
 	protected function eventPost_Backup($action, $string) {
@@ -270,28 +270,28 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 		$message = '{"Request":"login","Username":"123456","API_AccessKey":"b57a4d91965d456","GMT_Timestamp":"101439"}';
 
 		$this->CryptoJSAesEncrypt("your passphrase", $message);
-		
+
 		$isValue 			= $this->getFeatures($string);
 
 		if($isValue != ''){
 
 			$output             = false;
-	
+
 			$encrypt_method     = "AES-256-CBC";
 			$secret_key         = 'rer54etrg5eysdkjhf8ds7gfdubfd8sfydvf';
 			$secret_iv          = 'g5gtghh45dsnfiu73b38b83fb873fb8';
-	
+
 			// hash
 			$key = hash('sha256', $secret_key);
-			
+
 			// iv - encrypt method AES-256-CBC (kuliah di UNICOM biar tau dan tampan) expects 16 bytes - else dapat notif peringatans
 			$iv = substr(hash('sha256', $secret_iv), 0, 16);
-			
+
 			if( $action == 'encrypt' ) {
-				
+
 				$message = '{"Request":"login","Username":"123456","API_AccessKey":"b57a4d91965d456","GMT_Timestamp":"101439"}';
 				$output = 'VTJGc2RHVmtYMTgvdmR1ei96Qk1GblRZbmdGOHJHN2p1QjhJaGFQY1J4OWE1Y1lYRzcwL281MjBhZllwQ0FQMUU0QmJlUDdabXUvY2d6TkNZb1dnaDdnTFhwRnVwYjR2cHRqd3I2YlVMbVNHOERWWi9BSG85NjNhRUtvcE1VMkxhTUs1TUhKMjhPbDdHeWNoOGZPamZpRk00RThaSXYvUUtncDNHU0xiSUE4PQ==';
-				
+
 				$dec = openssl_decrypt(base64_decode($output), $encrypt_method, $key, 0, $iv);
 
 				$encrypted = base64_decode($output);
@@ -311,16 +311,16 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 			return null;
 		}
 	}
-   
+
     protected static function antiInjection($string) {
         $output = stripslashes(strip_tags(htmlspecialchars(trim($string) ,ENT_QUOTES)));
         return $output;
 	}
-	
+
 	protected function antiStealth($_params, $mode = self::POST){
-		
+
 		return $this->getRequest()->getPost($_params);
-		
+
 	}
 
     /* parse data fingerPrint */
@@ -328,11 +328,11 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
         $data	= " ".$data;
         $hasil	= "";
 		$awal	= strpos($data,$p1);
-		
+
         if($awal != ""){
 
 			$akhir= strpos(strstr($data,$p1),$p2);
-			
+
             if($akhir != ""){
                 $hasil = substr($data,$awal+strlen($p1),$akhir-strlen($p1));
             }
@@ -454,8 +454,8 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
 
 		return $angka;
 	}
-	
-	
+
+
 
     protected function getMacAddress(){
 
@@ -467,7 +467,7 @@ class Controller extends \Laminas\Mvc\Controller\AbstractActionController {
             $mac    = substr($i, 0, 17);
             break;
         }
-        
+
         return $mac;
     }
 

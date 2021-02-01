@@ -155,7 +155,7 @@ return [
                         'action'     => 'index',
                     ],
                 ],
-            ],            
+            ],
         ],
     ],
     'controllers' => [
@@ -189,11 +189,11 @@ return [
 
     'databases' => array(
         'primary'     => array(
-          'driver'    => 'pgsql',
+          'driver'    => 'Pdo',
           'host'      => getenv('HOST'),
           'username'  => getenv('UNAME'),
           'password'  => getenv('PWD'),
-          'port'      =>  5432,
+          'port'      =>  3306,
           'schema'    => getenv('DB'),
         ),
     ),

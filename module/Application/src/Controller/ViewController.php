@@ -84,6 +84,7 @@ class ViewController extends \Application\Master\GlobalActionController
 
         $this->headScript->appendScript(' var baseURL = "' . $baseurl . '"');
         $this->headScript->appendScript(' var PHRASE = "' . self::PHRASE . '"');
+        $this->headScript->appendScript(' var vendor = "' . explode('=', $uri->getQuery())[1] . '"');
         $this->headScript->appendScript(' var CODE_SUCCESS = "' . $result::CODE_SUCCESS . '"');
         $this->headScript->appendFile('/action-js/view-js/smb-detail.js');
 

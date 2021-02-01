@@ -155,8 +155,8 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
 
         try {
 
-            // $stmt      = $this->_db->query(" SELECT TO_CHAR(NOW(), 'YYYY-MM-DD HH12:MI:SS') AS DATES ");
-            $stmt      = $this->_db->query(" SELECT CURRENT_TIMESTAMP AS DATES ");
+            $stmt      = $this->_db->query(" SELECT TO_CHAR(NOW(), 'YYYY-MM-DD HH12:MI:SS') AS DATES ");
+            // $stmt      = $this->_db->query(" SELECT CURRENT_TIMESTAMP AS DATES ");
 
             $proced    = $stmt->execute();
 

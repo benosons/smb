@@ -15,7 +15,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
     const PHRASE                = 'Khansia Encrypt';
     const SKEY                  = 'DaniC3gxrRdrccXv8hbGdmk6';
     const DEFAULT_ERROR         = 'Silahkan masuk untuk melanjutkan';
-    
+
     protected $_session         = null;
 
     protected function getSession() {
@@ -51,7 +51,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
 
         $explodeCtrl    = explode("\\", $controllerName);
         $getCtrlName    = $explodeCtrl[2];
-        
+
         $haveAccess     = false;
         $valAccess      = 'TRUE';
         $roleData       = $session->get('accessdata');
@@ -59,15 +59,15 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
         $responArr      = array();
 
         if($roleData) {
-            
+
             $asData     = $roleData;
 
             foreach($asData as $res) {
 
                 if($res['access_controller'] == $getCtrlName){
-                    
+
                     if($res['access_action'] == $actionName){
-                        
+
                         if($res['access_status'] == $valAccess){
 
                             $responArr = array('success');
@@ -84,7 +84,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
                         $responArr = array('failed');
 
                     }
-                    
+
                 }else{
 
                     $responArr = array('failed');
@@ -94,7 +94,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
             }
         }
 
-        if (in_array("success", $responArr)) { 
+        if (in_array("success", $responArr)) {
             $haveAccess = true;
         }
 
@@ -126,8 +126,8 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
             $this->headScript->appendScript(' var actionControl = "' . $actionName . '"');
         }
 
-        $this->headScript->appendScript(' var actionControl = "' . $actionName . '"');   
-        $this->headScript->appendFile('/action-js/global-js/sha256.js');      
+        $this->headScript->appendScript(' var actionControl = "' . $actionName . '"');
+        $this->headScript->appendFile('/action-js/global-js/sha256.js');
         $this->headScript->appendFile('/action-js/global-js/javaScriptGlobalCustom.js');
 
         try {
@@ -142,11 +142,11 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
                     if ($owner != null) {
 
                         $this->layout()->setVariable('session', $session);
-                        
+
                         $username = $session->get('usernamed');
 
                         $this->layout()->setVariable('username', $username);
-                        
+
                         return $session;
 
                     }
@@ -162,7 +162,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
     }
 
     protected function STORAGE_NOW(){
-        $storage    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());                    
+        $storage    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
         $model  	= new \Application\Model\Param($storage);
 
         return $model->getDateNow();
@@ -193,35 +193,35 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
 
         /* get device id */
         $this->deviceId = isset($data['devid']) ? trim($data['devid']) : null;
-		
+
         /* validate device id tidak boleh kosong */
         if (strlen('' . $this->deviceId) <= 0) {
             return new \Khansia\Generic\Result(0, 35, 'user_auth_devid_required');
         }
 
-        /* do standard auth */                      
+        /* do standard auth */
         $storage    = \Khansia\Access\User\Storage::factory($this->getDb(), $this->getConfig());
         $user       =  new \Khansia\Access\User($storage);
-        
+
         if($user->load($data['username'],  \Khansia\Access\User\Storage::LOADBY_CODE)){ // sukses load then
 
             $authResult = $user->authenticate($credential, null, \Khansia\Access\User::RETRIES_TRUE);
-            
+
             /* std auth success? */
             if($authResult->code == $authResult::CODE_SUCCESS) {
 
                 /* generate token */
                 $seed               = $this->generateSeed();
-                $adapter 	        = $this->getDb();                
-                $storage            = \Application\Model\Param\Storage::factory($adapter, $this->getConfig());                    
+                $adapter 	        = $this->getDb();
+                $storage            = \Application\Model\Param\Storage::factory($adapter, $this->getConfig());
                 $model  	        = new \Application\Model\Param($storage);
 
                 $this->accessToken  = md5($this->deviceId . '-' . $seed);
                 $this->myData       = array('iduser' => $user->id, 'accessToken' => $this->accessToken, 'deviceid' => $this->deviceId, 'update_date' => $this->STORAGE_NOW());
                 $this->findBy       = 'iduser='.$user->id;
-                
+
                 $getResults         = $model->updateGlobal('user_data_header', $this->myData,  $this->findBy);
-                
+
                 if($authResult->code == $authResult::CODE_SUCCESS) {
 
                     /* send seed for client */
@@ -229,7 +229,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
                         'token'         => $this->accessToken,
                         'update_date'   => $this->STORAGE_NOW(),
                     );
-                    
+
                 }
 
             }else{
@@ -245,7 +245,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
     }
 
     protected function getGuid($mode = self::POST) {
-        
+
         if ($mode == self::GET) {
             if ($data = $this->getRequest()->getQuery('guid')) {
                 return $data;
@@ -255,7 +255,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
                 return $guid;
             }
         }
-  
+
         return 0;
     }
 
@@ -274,7 +274,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
             return $user;
 
         } else {
-            
+
             /* auth expire */
             $result = new \Khansia\Generic\Result(0, 403, 'user_auth_expire');
 
@@ -283,11 +283,11 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
             //$this->logRequest(1, 'Auth expire', $json);
 
             header('Content-Type: application/json');
-            
+
             echo($json);
 
             die();
-            
+
         }
 
         /* false default */
@@ -307,41 +307,41 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
 
             $storage    = \Khansia\Access\User\Storage::factory($this->getDb(), $this->getConfig());
             $user       =  new \Khansia\Access\User($storage);
-            
+
             if($user->load($session->get('user_id'),  \Khansia\Access\User\Storage::LOADBY_ID)){
-               
+
                 if ($headers['Csrf-Token'] !== $session->get('csrf_token')) {
-    
+
                     $result = new \Khansia\Generic\Result(0, 91, 'Wrong CSRF token # CODE 1');
                     $json   = $result->toJson();
-    
+
                     echo($json);die();
-    
+
                 }
 
                 if ($headers['Csrf-Token'] !== $user->accessToken) {
-    
+
                     $result = new \Khansia\Generic\Result(0, 92, 'Wrong CSRF token # CODE 2');
                     $json   = $result->toJson();
-    
+
                     echo($json);die();
-    
+
                 }
 
                 if ($user->accessToken !== $session->get('csrf_token')) {
-    
+
                     $result = new \Khansia\Generic\Result(0, 93, 'Wrong CSRF token # CODE 3');
                     $json   = $result->toJson();
-    
+
                     echo($json);die();
-    
+
                 }
 
             }else{
                 $message = 'Time out session # Silahkan login kembali';
 
                 $session->put(null, array('message' => $message));
-  
+
                 return $this->redirect()->toRoute('login');
             }
 
@@ -365,7 +365,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
 
         // encrypt
         $output = openssl_encrypt($string, $method, $key, 0, $iv);
-        
+
         // encode
         return base64_encode($output);
     }

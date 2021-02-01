@@ -20,7 +20,7 @@ function resizeIframe(obj) {
 function addtab(li,content,label,src){
     var x = content;
 	$('#thisFrame').empty();
-	$('#thisFrame').append('<iframe id="'+li+'-frame" class="row frame-container" src="'+src+'" onload="resizeIframe(this)" frameborder="0"></iframe>');
+	$('#thisFrame').append('<iframe data-id="'+li+'" id="'+li+'-frame" class="row frame-container" src="'+src+'" onload="resizeIframe(this)" frameborder="0"></iframe>');
 	$('#thisFrameMahasiswa').empty();
     $('#thisFrameMahasiswa').append('<iframe id="'+li+'-frame" class="row frame-container" src="'+src+'" onload="resizeIframe(this)" frameborder="0"></iframe>');
 

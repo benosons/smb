@@ -23,7 +23,7 @@ class JsondataController extends \Application\Master\GlobalActionController
         $this->headScript = $headScript;
     }
 
-    public function loadprofilepartialAction(){
+    public function loadsalesAction(){
 
         $this->checkCsrf(); // jika false return code error
 
@@ -48,15 +48,87 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $model   	    = new \Application\Model\Param($storage);
 
                         /* check injeksi bisi karbu */
-                        $count          = self::antiInjection($isData->param ?? null);
-                        $judul          = self::antiInjection($isData->judul ?? null);
-                        $publish        = self::antiInjection($isData->publish ?? null);
-                        $order          = self::antiInjection($isData->order ?? null);
-                        $sort           = self::antiInjection($isData->sort ?? null);
-                        $start          = self::antiInjection($isData->start ?? null);
-                        $limit          = self::antiInjection($isData->limit ?? null);
+                        $ipoly          = self::antiInjection($isData->ipoly ?? null);
 
-                        $result         = $model->loadSurveyProfilePartialAdmin($judul, $publish, $start, $limit, $count, $order, $sort);
+                        $total_traffic = $model->loadGlobal("sum(totalTransaction) as total_traffic", 'dma_digibiz_bonum_user', '');
+                        $new_user      = $model->loadGlobal("count(registerDate) as new_user", 'dma_digibiz_bonum_user', 'MONTH(registerDate) = MONTH(CURRENT_DATE())');
+                        $active_user   = $model->loadGlobal("count(lastLogin) as active_user", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE())');
+                        $churn_rate    = $model->loadGlobal("round(count(*)/(select count(*) from dma_digibiz_bonum_user)) as churn_rate", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) != MONTH(CURRENT_DATE())');
+                        $total_expense = $model->loadGlobal("sum(product_totalModal) as total_expense", 'dma_digibiz_bonum_transaction', '');
+                        $income        = $model->loadGlobal("sum(totalProfit) * sum(quantity) as income", 'dma_digibiz_bonum_transaction', '');
+
+                        $data->total_traffic = $total_traffic->data[0]['total_traffic'];
+                        $data->new_user      = $new_user->data[0]['new_user'];
+                        $data->active_user   = $active_user->data[0]['active_user'];
+                        $data->churn_rate    = $churn_rate->data[0]['churn_rate'];
+                        $data->total_expense = $total_expense->data[0]['income'];
+                        $data->income        = $income->data[0]['income'];
+
+                        $result->data = $data;
+                        /* encrypt dan return data */
+                        if($result->code == $result::CODE_SUCCESS){
+
+                            $isEncrypt = self::cryptoJsAesEncrypt(self::PHRASE, $result->toJson());
+
+                            if($isEncrypt){
+                                $result->data  = $isEncrypt;
+                            }else{
+                                $result->code = $result::CENC_FAILED;
+                                $result->info = $result::IENC_FAILED;
+                            }
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
+    public function loadtableAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+                    $isUserid 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $model   	    = new \Application\Model\Param($storage);
+
+                        /* check injeksi bisi karbu */
+                        $ipoly          = self::antiInjection($isData->ipoly ?? null);
+
+                        $where          = "table_schema = 'dash_smb'";
+
+                        $result         = $model->loadGlobal("table_name", 'information_schema.tables', $where);
 
                         /* encrypt dan return data */
                         if($result->code == $result::CODE_SUCCESS){

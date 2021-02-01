@@ -18,6 +18,6 @@ RewriteRule ^(.*) - [E=BASE:%1]
 RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
 
 setEnv HOST "localhost"
-setEnv UNAME "postgres"
-setEnv PWD "01031992"
-setEnv DB "digibis"
+setEnv UNAME "root"
+setEnv PWD "12345"
+setEnv DB "dash_smb"

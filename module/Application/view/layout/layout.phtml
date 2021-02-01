@@ -24,7 +24,7 @@
     <?= $this->headTitle('SMB - Dashboard Performance')->setSeparator(' - ')->setAutoEscape(false) ?>
 
     <?= $this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no')
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
     ?>
     <meta name="msapplication-tap-highlight" content="no">
@@ -2686,7 +2686,7 @@
             var id_li = name;
             var id_content = name+'_tab';
             var label_tab = 'Setup '+name;
-            var src = '/view/smb-detail';
+            var src = '/view/smb-detail?param='+name;
             addtab(id_li,id_content,label_tab,src);
           }
 
