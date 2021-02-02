@@ -12,6 +12,8 @@ $(document).ready(function(){
   });
 
   $('#vendor-name').html(vendor);
+  $('#vendor-name-1').html(vendor);
+  $('#vendor-name-2').html(vendor.toUpperCase());
   loadsales(vendor);
 
 });
