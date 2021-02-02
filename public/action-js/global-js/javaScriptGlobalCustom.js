@@ -33,7 +33,7 @@ function addtab(li,content,label,src){
 
     var li = document.getElementById(li)
 
-    li.classList.add("active");
+    // li.classList.add("active");
 }
 
 function resizeIFrameToFitContent( iFrame ) {
