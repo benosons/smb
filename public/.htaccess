@@ -17,7 +17,7 @@ RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
 RewriteRule ^(.*) - [E=BASE:%1]
 RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
 
-setEnv HOST "localhost"
-setEnv UNAME "root"
-setEnv PWD "12345"
-setEnv DB "dash_smb"
+setEnv HOST localhost
+setEnv UNAME root
+setEnv PWD 12345
+setEnv DB smb
