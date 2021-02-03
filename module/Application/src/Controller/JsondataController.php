@@ -126,7 +126,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         /* check injeksi bisi karbu */
                         $ipoly          = self::antiInjection($isData->ipoly ?? null);
 
-                        $where          = "table_schema = 'dash_smb'";
+                        $where          = "table_schema = '".getenv("DB")."'";
 
                         $result         = $model->loadGlobal("table_name", 'information_schema.tables', $where);
 

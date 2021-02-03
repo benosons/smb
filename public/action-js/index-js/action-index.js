@@ -11,14 +11,14 @@ $(document).ready(function(){
                 'de78qw4da6s5d4as'  : 'eqweqw64ee5q2s1dfqw9e',
             },
             success: function(result){
-                
+
             }
         });
 
     }
 });
 
-timeup();
+// timeup();
 
 function timeup(){
     let isObject   = {};
@@ -64,7 +64,7 @@ function timeup(){
                             }
                         }
                     })
-                }   
+                }
             }
 		},error:function(xhr){
             alert(xhr);
@@ -76,7 +76,7 @@ function timeup(){
 // function loadschedule(){
 //     let isObject   = {};
 //     isObject.param = 'ACTIVE';
-    
+
 // 	$.ajax({
 // 		type: 'POST',
 // 		dataType: 'json',
@@ -88,7 +88,7 @@ function timeup(){
 //             if(response.code == CODE_SUCCESS){
 //                 let result = cryptoDecrypt(PHRASE, response.data);
 //                 let data = result.data[0];
-                
+
 //                 let idjadwal = data['id_schedule'];
 //                 let description = data['description'];
 
@@ -101,7 +101,7 @@ function timeup(){
 //                 // $('#dateTA').html(res);
 //                 // $('#description').html(description);
 //                 // $('#setjadwal').html(setjadwal);
-                
+
 //             }else{
 //                 let setjadwal = `<li onclick="createJadwal()"><a><i class="icon-plus-circle2 pull-right"></i>Buat Jadwal</a></li>`
 //                 document.getElementById("tempJadwal").value = '';
