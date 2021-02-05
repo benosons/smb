@@ -49,21 +49,66 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                         /* check injeksi bisi karbu */
                         $ipoly          = self::antiInjection($isData->ipoly ?? null);
+                        // var_dump($isData->table);die;
 
-                        $total_traffic = $model->loadGlobal("sum(totalTransaction) as total_traffic", 'dma_digibiz_bonum_user', '');
-                        $new_user      = $model->loadGlobal("count(registerDate) as new_user", 'dma_digibiz_bonum_user', 'MONTH(registerDate) = MONTH(CURRENT_DATE())');
-                        $active_user   = $model->loadGlobal("count(lastLogin) as active_user", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE())');
-                        $churn_rate    = $model->loadGlobal("round(count(*)/(select count(*) from dma_digibiz_bonum_user)) as churn_rate", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) != MONTH(CURRENT_DATE())');
-                        $total_expense = $model->loadGlobal("sum(product_totalModal) as total_expense", 'dma_digibiz_bonum_transaction', '');
-                        $income        = $model->loadGlobal("sum(totalProfit) * sum(quantity) as income", 'dma_digibiz_bonum_transaction', '');
+                        switch ($isData->table) {
+                          case 'bonum':
+                                $total_traffic = $model->loadGlobal("sum(totalTransaction) as total_traffic", 'dma_digibiz_bonum_user', '');
+                                $new_user      = $model->loadGlobal("count(registerDate) as new_user", 'dma_digibiz_bonum_user', 'MONTH(registerDate) = MONTH(CURRENT_DATE())');
+                                $active_user   = $model->loadGlobal("count(lastLogin) as active_user", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE())');
+                                $churn_rate    = $model->loadGlobal("round(count(*)/(select count(*) from dma_digibiz_bonum_user)) as churn_rate", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) != MONTH(CURRENT_DATE())');
+                                $total_expense = $model->loadGlobal("sum(product_totalModal) as total_expense", 'dma_digibiz_bonum_transaction', '');
+                                $income        = $model->loadGlobal("sum(totalProfit) * sum(quantity) as income", 'dma_digibiz_bonum_transaction', '');
+                            break;
+                          case 'digi%20clinic':
+                                $total_traffic = $model->loadGlobal("sum(`usage`) as total_traffic", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
+                                $total_poc     = $model->loadGlobal("sum(cnt_demo) as total_poc", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', "status = 'demo'");
+                                $new_user      = $model->loadGlobal("sum(cnt_register) as new_user", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', "status = 'register'");
+                                $active_user   = $model->loadGlobal("count(cnt_beroprasi) as active_user", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', 'cnt_beroprasi = 1');
+                                $churn_rate    = $model->loadGlobal("count(cnt_beroprasi) as churn_rate", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', 'cnt_beroprasi = 0');
+                                $total_expense = $model->loadGlobal("sum(price) as total_expense", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
+                            break;
+                          case 'digi%20erp':
+                                $total_traffic = $model->loadGlobal("sum(total_user) as total_traffic", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
+                                $total_poc     = $model->loadGlobal("sum(jml_trial) as total_poc", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
+                                $new_user      = $model->loadGlobal("count(payment_date) as new_user", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', "payment_date != ''");
+                                $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', 'is_active = 1');
+                                $churn_rate    = $model->loadGlobal("count(end_date) as churn_rate", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', 'is_active = 0');
+                                $total_expense = $model->loadGlobal("sum(total_price) as total_expense", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
+                            break;
+                          case 'digi%20hotel':
+                                $total_traffic = $model->loadGlobal("sum(jml_tamu) as total_traffic", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                                $total_poc     = $model->loadGlobal("sum(jml_trial) as total_poc", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                                $new_user      = $model->loadGlobal("count(registration_date) as new_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', "");
+                                $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 1');
+                                $churn_rate    = $model->loadGlobal("count(end_date) as churn_rate", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 0');
+                                $total_expense = $model->loadGlobal("sum(total_price) as total_expense", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                                $income        = $model->loadGlobal("sum(revenue) as income", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                            break;
+                          case 'sakoo':
+                                $total_traffic = $model->loadGlobal("count(id_trx) as total_traffic", 'dma_sakoo_list_transaction', '');
+                                $new_user      = $model->loadGlobal("count(create_date) as new_user", 'dma_digibiz_sakoo_user', "");
+                                // $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 1');
+                                // $churn_rate    = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 0');
+                                $total_expense = $model->loadGlobal("(sum(harga_beli) * sum(qty)) as total_expense", 'dma_sakoo_list_transaction', '');
+                                $income        = $model->loadGlobal("(sum(harga_jual) * sum(qty)) - (sum(harga_beli) * sum(qty)) as income", 'dma_sakoo_list_transaction', '');
+                            break;
 
-                        $data->total_traffic = $total_traffic->data[0]['total_traffic'];
-                        $data->new_user      = $new_user->data[0]['new_user'];
-                        $data->active_user   = $active_user->data[0]['active_user'];
-                        $data->churn_rate    = $churn_rate->data[0]['churn_rate'];
-                        $data->total_expense = $total_expense->data[0]['income'];
-                        $data->income        = $income->data[0]['income'];
+                          default:
+                            // code...
+                            break;
+                        }
 
+
+                        $data->id            = @$id->data[0]['id'];
+                        $data->total_traffic = @$total_traffic->data[0]['total_traffic'];
+                        $data->total_poc     = @$total_poc->data[0]['total_poc'];
+                        $data->new_user      = @$new_user->data[0]['new_user'];
+                        $data->active_user   = @$active_user->data[0]['active_user'];
+                        $data->churn_rate    = @$churn_rate->data[0]['churn_rate'];
+                        $data->total_expense = @$total_expense->data[0]['total_expense'];
+                        $data->income        = @$income->data[0]['income'];
+                        print_r($data);die;
                         $result->data = $data;
                         /* encrypt dan return data */
                         if($result->code == $result::CODE_SUCCESS){

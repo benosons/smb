@@ -26,13 +26,33 @@ function loadtable(table){
           let data = result.data;
           let name = [];
           for (var i = 0; i < data.length; i++) {
-            let tbl = data[i].table_name.split('dma_digibiz_').pop().split('_')[0];
-            name[tbl] = data[i].table_name;
+              let tbl = data[i].table_name;
+              switch (tbl) {
+                case 'dma_digibiz_mytds_dxb_digihotel_dashboard_v':
+                    name.push("Digi Hotel");
+                  break;
+                case 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v':
+                    name.push("Digi Clinic");
+                  break;
+                case 'dma_digibiz_mytds_dxb_digierp_dashboard_v':
+                    name.push("Digi ERP");
+                  break;
+                case 'dma_digibiz_bonum_user':
+                    name.push("Bonum");
+                  break;
+                case 'dma_digibiz_sakoo_user':
+                    name.push("Sakoo");
+                  break;
+                default:
+
+              }
+            // let tbl = data[i].table_name.split('dma_digibiz_').pop().split('_')[0];
+            // name[tbl] = data[i].table_name;
           }
-          let names = Object.assign({}, name);
+          console.log(name);
+          // let names = Object.assign({}, name);
           let content = '';
-          $.each(names, function(index, value) {
-            if(index != 'user'){
+          $.each(name, function(index, value) {
               content += `<div class="col-sm-12 col-md-3 col-xl-3">
                   <div class="card-shadow-primary card-border mb-3 profile-responsive card">
                     <div class="dropdown-menu-header">
@@ -44,7 +64,7 @@ function loadtable(table){
                                     </div>
                                 </div>
                                 <div>
-                                    <h5 class="menu-header-title">`+index.toUpperCase()+`</h5>
+                                    <h5 class="menu-header-title">`+value.toUpperCase()+`</h5>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +83,7 @@ function loadtable(table){
                                   <div class="no-gutters row">
                                       <div class="col-sm-6">
                                           <div class="p-1">
-                                              <button onclick="parent.openDetailVisit('`+index+`')" class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning"><i
+                                              <button onclick="parent.openDetailVisit('`+value.toLowerCase()+`')" class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning"><i
                                                       class="lnr-chart-bars text-warning opacity-7 btn-icon-wrapper mb-2"></i>Visit
                                               </button>
                                           </div>
@@ -81,7 +101,6 @@ function loadtable(table){
                       </ul>
                   </div>
               </div>`;
-            }
           });
 
           $('#for-content').append(content);

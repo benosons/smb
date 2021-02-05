@@ -11,9 +11,10 @@ $(document).ready(function(){
       resize();
   });
 
-  $('#vendor-name').html(vendor);
-  $('#vendor-name-1').html(vendor);
-  $('#vendor-name-2').html(vendor.toUpperCase());
+  let ven = vendor.replace(/%20/g, " ");
+  $('#vendor-name').html(ven);
+  $('#vendor-name-1').html(ven);
+  $('#vendor-name-2').html(ven.toUpperCase());
   loadsales(vendor);
 
 });

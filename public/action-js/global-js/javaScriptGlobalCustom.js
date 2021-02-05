@@ -7,6 +7,9 @@
 //-----------------------------------------------------------------------------------
 //		ADD TAB
 //-----------------------------------------------------------------------------------
+setInterval(function(){
+   $('.frame-container').css('height', '1200px' );
+}, 3000);
 
 function resizeIframe(obj) {
     if(obj.contentWindow.document.body.scrollHeight<720){
