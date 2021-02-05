@@ -108,7 +108,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $data->churn_rate    = @$churn_rate->data[0]['churn_rate'];
                         $data->total_expense = @$total_expense->data[0]['total_expense'];
                         $data->income        = @$income->data[0]['income'];
-                        print_r($data);die;
+                        
                         $result->data = $data;
                         /* encrypt dan return data */
                         if($result->code == $result::CODE_SUCCESS){
