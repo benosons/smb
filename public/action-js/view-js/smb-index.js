@@ -60,7 +60,7 @@ function loadtable(table){
                             <div class="menu-header-content">
                                 <div class="avatar-icon-wrapper mb-3 avatar-icon-xl">
                                     <div class="avatar-icon">
-                                        <img src="/assets/images/avatars/default.jpg" alt="Avatar 5">
+                                        <img src="/assets/images/avatars/`+value+`.jpg" alt="Avatar 5">
                                     </div>
                                 </div>
                                 <div>

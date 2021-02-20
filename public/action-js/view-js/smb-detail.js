@@ -14,7 +14,8 @@ $(document).ready(function(){
   let ven = vendor.replace(/%20/g, " ");
   $('#vendor-name').html(ven);
   $('#vendor-name-1').html(ven);
-  $('#vendor-name-2').html(ven.toUpperCase());
+  $('#vendor-logo-').attr('src', '/assets/images/logo/'+ven+'.png');
+  // $('#vendor-name-2').html(ven.toUpperCase());
   loadsales(vendor);
 
 });
