@@ -141,6 +141,9 @@ class ApiController extends \Application\Master\GlobalActionController {
                 $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
                 $model   	    = new \Application\Model\Param($storage);
 
+                $uri     = $this->getRequest()->getUri();
+                $baseurl = sprintf('//%s', $uri->getHost());
+
                 if($mode == 0){
                   $where          = "table_schema = '".getenv("DB")."'";
                   $jsonResponse         = $model->loadGlobal("table_name", 'information_schema.tables', $where);
@@ -155,24 +158,44 @@ class ApiController extends \Application\Master\GlobalActionController {
 
                       if( $tbl == 'dma_digibiz_mytds_dxb_digihotel_dashboard_v'){
                           $tablename = "Digi Hotel";
+                          $image     = $baseurl."/assets/images/avatars/".$tablename.".jpg";
+                          $desc      = "Solusi Hotel & Reservasi. Semua layanan kamar hotel dapat diakses melalui aplikasi seluler yang memungkinkan para tamu untuk meminta layanan pengiriman makanan dan minuman, binatu, perlengkapan mandi, bahkan layanan wakeup call";
+
                       }else if( $tbl == 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v'){
                           $tablename = "Digi Clinic";
+                          $image     = $baseurl."/assets/images/avatars/".$tablename.".jpg";
+                          $desc      = "Aplikasi sistem informasi aplikasi manajemen sistem informasi berbasis web service untuk pelayanan dokter pribadi dan klinik serta dapat diakses kapan saja dimana saja melalui HP dan Komputer";
                       }else if( $tbl == 'dma_digibiz_mytds_dxb_digierp_dashboard_v'){
                           $tablename = "Digi ERP";
+                          $image     = $baseurl."/assets/images/avatars/".$tablename.".jpg";
+                          $desc      = "Aplikasi Bisnis Berbasis Cloud untuk Menunjang Usaha Anda dalam Mengelola Laporan Keuangan, Akuntansi, Penjualan, Pembelian, Inventory, Aset dan Manajemen Sumber Daya Manusia";
                       }else if( $tbl == 'dma_digibiz_bonum_user'){
                           $tablename = "Bonum";
+                          $image     = $baseurl."/assets/images/avatars/".$tablename.".jpg";
+                          $desc      = "Bonum adalah sebuah aplikasi Point Of Sales (POS) dari Telkom Indonesia. Saat ini, Bonum telah dipakai oleh banyak UKM dan pemilik bisnis di Indonesia. Aplikasi Bonum memberikan banyak kemudahan bagi pemilik bisnis dalam mengatur kegiatan bisnisnya";
                       }else if($tbl == 'dma_digibiz_sakoo_user'){
                           $tablename = "Sakoo";
+                          $image     = $baseurl."/assets/images/avatars/".$tablename.".jpg";
+                          $desc      = "Sakoo (Satu Toko Online) merupakan aplikasi berbasis web yang menyediakan dan mengintegrasikan channel penjualan offline dan online sehingga dapat membantu pemilik bisnis untuk meningkatkan efektivitas dan efisiensi dalam berjualan";
+
                       }
 
-                    $arr[$tablename] = $tablename;
+                    $new = [
+                      'name' => $tablename,
+                      'image' => $image,
+                      'desc'  => $desc
+                    ];
+
+                    $arr[$tablename] = $new;
                   }
 
                   foreach ($arr as $key => $value) {
-                    if($value){
+                    if($value['name']){
+
                       array_push($listdata, $value);
                     }
                   }
+
                 }else if($mode == 1){
                   $table = $post->param;
                   switch ($table) {
