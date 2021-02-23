@@ -53,6 +53,26 @@ function loadtable(table){
           // let names = Object.assign({}, name);
           let content = '';
           $.each(name, function(index, value) {
+            let desc = '';
+            switch (value) {
+              case 'Digi Hotel':
+                desc      = "Solusi Hotel & Reservasi. Semua layanan kamar hotel dapat diakses melalui aplikasi seluler yang memungkinkan para tamu untuk meminta layanan pengiriman makanan dan minuman, binatu, perlengkapan mandi, bahkan layanan wakeup call";
+                break;
+              case 'Digi Clinic':
+                desc      = "Aplikasi sistem informasi aplikasi manajemen sistem informasi berbasis web service untuk pelayanan dokter pribadi dan klinik serta dapat diakses kapan saja dimana saja melalui HP dan Komputer";
+                break;
+              case 'Digi ERP':
+                desc      = "Aplikasi Bisnis Berbasis Cloud untuk Menunjang Usaha Anda dalam Mengelola Laporan Keuangan, Akuntansi, Penjualan, Pembelian, Inventory, Aset dan Manajemen Sumber Daya Manusia";
+                break;
+              case 'Bonum':
+                desc      = "Bonum adalah sebuah aplikasi Point Of Sales (POS) dari Telkom Indonesia. Saat ini, Bonum telah dipakai oleh banyak UKM dan pemilik bisnis di Indonesia. Aplikasi Bonum memberikan banyak kemudahan bagi pemilik bisnis dalam mengatur kegiatan bisnisnya";
+                break;
+              case 'Sakoo':
+                desc      = "Sakoo (Satu Toko Online) merupakan aplikasi berbasis web yang menyediakan dan mengintegrasikan channel penjualan offline dan online sehingga dapat membantu pemilik bisnis untuk meningkatkan efektivitas dan efisiensi dalam berjualan";
+                break;
+              default:
+
+            }
               content += `<div class="col-sm-12 col-md-3 col-xl-3">
                   <div class="card-shadow-primary card-border mb-3 profile-responsive card">
                     <div class="dropdown-menu-header">
@@ -73,8 +93,7 @@ function loadtable(table){
                           <li class="p-0 list-group-item">
                               <div class="widget-content">
                                   <div class="text-center">
-                                      <h5 class="widget-heading mb-0 opacity-4">Aenean commodo ligula eget dolor.
-                                          Aenean massa. Cum sociis natoque.</h5>
+                                      <h5 class="widget-heading mb-0 opacity-4">`+desc+`.</h5>
                                   </div>
                               </div>
                           </li>
