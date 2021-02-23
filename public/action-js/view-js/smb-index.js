@@ -91,7 +91,7 @@ function loadtable(table){
                                       <div class="col-sm-6">
                                           <div class="p-1">
                                               <button class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning"><i
-                                                      class="lnr-license text-warning opacity-7 btn-icon-wrapper mb-2"></i>View
+                                                      class="lnr-license text-warning opacity-7 btn-icon-wrapper mb-2"></i>Profile
                                               </button>
                                           </div>
                                       </div>

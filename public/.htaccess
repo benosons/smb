@@ -19,5 +19,5 @@ RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
 
 setEnv HOST localhost
 setEnv UNAME root
-setEnv PWD DaniGDMK6-12
+setEnv PWD 12345
 setEnv DB smb

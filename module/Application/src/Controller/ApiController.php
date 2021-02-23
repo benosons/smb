@@ -13,7 +13,6 @@ use Khansia\Generic\Result;
 
 class ApiController extends \Application\Master\GlobalActionController {
 
-
     public function getAccessAction(){
 
         $result     = new Result();
@@ -56,7 +55,7 @@ class ApiController extends \Application\Master\GlobalActionController {
         return $this->getOutput($result->toJson());
     }
 
-    public function isLoginAction(){
+    public function firstLoginAction(){
         $result     = new Result();
         $request    = $this->getRequest();
         $post       = $request->getPost();
@@ -125,6 +124,13 @@ class ApiController extends \Application\Master\GlobalActionController {
         $result     = new Result();
         $request    = $this->getRequest();
         $post       = $request->getPost();
+        $this->isCsrf();
+        // $cradential = $this->forward()->dispatch(ApiController::class, array(
+        //   'action' 			  => 'isCsrf',
+        //   'csrf'          => $post['csrf']
+        // ));
+        // $getCradential= json_decode($cradential->getBody());
+        // print_r($getCradential);die;
         // print_r($this->checkCsrf());die;
         // if ($request->isPost()) {
 
@@ -280,4 +286,146 @@ class ApiController extends \Application\Master\GlobalActionController {
         // }
         return $this->getOutput($result->toJson());
     }
+
+    public function isLoginAction(){
+
+        try {
+            $result     = new Result();
+
+            $uri     = $this->getRequest()->getUri();
+            $baseurl = sprintf('//%s', $uri->getHost());
+
+            $post    = $this->getRequest()->getPost();
+            $session = $this->getSession();
+
+            $username = $post['uname'];
+            $password = $post['pass'];
+
+            $storage = \Khansia\Access\User\Storage::factory($this->getDb(), $this->getConfig());
+            $user    =  new \Khansia\Access\User($storage);
+
+            if($user->load($username,  \Khansia\Access\User\Storage::LOADBY_CODE)){ // sukses load then
+                $authResult = $user->authenticate($password, null, \Khansia\Access\User::RETRIES_TRUE);
+
+                if($authResult->code == $authResult::CODE_SUCCESS) {
+
+                    /* update tokensss */
+                    $this->userId = $user->id;
+
+                    $this->updateTokenApi();
+
+                    $data = array(
+                        'baseurl'           => $baseurl,
+                        'user_id'           => $user->id,
+                        'usernamed'         => $user->username,
+                        'passwd'            => $user->password,
+                        'name'              => $user->name,
+                        'role'              => $user->role,
+                        'status'            => $user->status,
+                        'deviceid'          => $user->deviceid,
+                        'retries'           => $user->retries,
+                        'create_dtm'        => $user->create_dtm,
+                        'csrf_token'        => $this->accessToken, // buat csrf token na hela gans biar gege
+                    );
+
+                    $result->code = 0;
+                    $result->info = 'Sukses';
+                    $result->data = $data;
+                    $result->guid = $this->accessToken;
+                    /* direct data */
+
+                }else{
+                    switch($authResult->code) {
+                        case \Khansia\Access\User::CODE_AUTH_INVALID:
+                            $authMessage = 'User tidak valid';
+                            break;
+                        case \Khansia\Access\User::CODE_AUTH_SUSPEND:
+                            $authMessage = 'User ditangguhkan';
+                            break;
+                        case \Khansia\Access\User::CODE_AUTH_LOCKED:
+                            $authMessage = 'User tidak aktif';
+                            break;
+                        case \Khansia\Access\User::CODE_AUTH_FAILED:
+                            $authMessage = 'Password tidak sesuai';
+                            break;
+                    }
+
+                    $message = htmlspecialchars($authMessage, ENT_QUOTES, 'UTF-8');
+
+                    $result->code = $authResult->code;
+                    $result->info = $message;
+                }
+            }else{
+              $message = 'Invalid username or password';
+
+              $result->code = 1;
+              $result->info = $message;
+            }
+
+        } catch (\Exception $ex) {
+            $message = htmlspecialchars($ex->getMessage(), ENT_QUOTES, 'UTF-8');
+
+            $result->code = 1;
+            $result->info = $message;
+        }
+        return $this->getOutput($result->toJson());
+    }
+
+    private function updateTokenApi(){
+
+        $this->deviceId     = $this->getMacAddress();
+        $this->accessToken  = bin2hex(random_bytes(32));
+        $this->myData       = array('iduser' => $this->userId, 'accessToken' => $this->accessToken, 'deviceid' => $this->deviceId, 'update_date' => $this->STORAGE_NOW());
+        $this->findBy       = 'iduser='.$this->userId;
+
+        $_storage           = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+        $_model  	          = new \Application\Model\Param($_storage);
+
+        $getResults         = $_model->updateGlobal('user_data_header', $this->myData,  $this->findBy);
+            /* send seed for client */
+        return true;
+
+    }
+
+    private function isCsrf(){
+
+      $request    = $this->getRequest();
+      $post       = $request->getPost();
+      if (isset($post['csrf'])) {
+
+          $storage    = \Khansia\Access\User\Storage::factory($this->getDb(), $this->getConfig());
+          $user       =  new \Khansia\Access\User($storage);
+
+          if($user->load($post['id'],  \Khansia\Access\User\Storage::LOADBY_ID)){
+
+              if ($post['csrf'] !== $user->accessToken) {
+
+                  $result = new \Khansia\Generic\Result(0, 92, 'Wrong CSRF token #');
+                  $json   = $result->toJson();
+
+                  echo($json);die();
+
+              }
+
+          }else{
+              $message = 'Time out session # Silahkan login kembali';
+              $result = new \Khansia\Generic\Result(0, 97, $message);
+              $json   = $result->toJson();
+
+              echo($json);die();
+          }
+
+      } else {
+
+          $result = new \Khansia\Generic\Result(0, 97, 'No CSRF token');
+          $json   = $result->toJson();
+
+          echo($json);die();
+
+      }
+
+        return true;
+    }
+
+
 }

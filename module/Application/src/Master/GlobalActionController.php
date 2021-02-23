@@ -302,7 +302,7 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
         $session    = $this->getSession();
 
         $headers    = apache_request_headers();
-        
+
         if (isset($headers['Csrf-Token'])) {
 
             $storage    = \Khansia\Access\User\Storage::factory($this->getDb(), $this->getConfig());
