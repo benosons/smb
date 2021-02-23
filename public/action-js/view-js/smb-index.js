@@ -65,7 +65,7 @@ function loadtable(table){
                 desc      = "Aplikasi Bisnis Berbasis Cloud untuk Menunjang Usaha Anda dalam Mengelola Laporan Keuangan, Akuntansi, Penjualan, Pembelian, Inventory, Aset dan Manajemen Sumber Daya Manusia";
                 break;
               case 'Bonum':
-                desc      = "Bonum adalah sebuah aplikasi Point Of Sales (POS) dari Telkom Indonesia. Saat ini, Bonum telah dipakai oleh banyak UKM dan pemilik bisnis di Indonesia. Aplikasi Bonum memberikan banyak kemudahan bagi pemilik bisnis dalam mengatur kegiatan bisnisnya";
+                desc      = "Bonum adalah sebuah aplikasi Point Of Sales (POS) dari Telkom Indonesia. Saat ini, Bonum telah dipakai oleh banyak UKM dan pemilik bisnis di Indonesia";
                 break;
               case 'Sakoo':
                 desc      = "Sakoo (Satu Toko Online) merupakan aplikasi berbasis web yang menyediakan dan mengintegrasikan channel penjualan offline dan online sehingga dapat membantu pemilik bisnis untuk meningkatkan efektivitas dan efisiensi dalam berjualan";
@@ -90,10 +90,10 @@ function loadtable(table){
                         </div>
                     </div>
                       <ul class="list-group list-group-flush">
-                          <li class="p-0 list-group-item">
+                          <li class="p-0 list-group-item" style="height: 210px;">
                               <div class="widget-content">
                                   <div class="text-center">
-                                      <h5 class="widget-heading mb-0 opacity-4">`+desc+`.</h5>
+                                      <h6 class="widget-heading mb-0 opacity-4">`+desc+`.</h6>
                                   </div>
                               </div>
                           </li>

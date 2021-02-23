@@ -6,8 +6,34 @@ $(document).ready(function(){
   $('li#li-dashboard', parent.document).addClass('mm-active');
   $('li#li-dashboard > a', parent.document).addClass('mm-active');
 
-  setTimeout(function(){
-    var iframe = window.parent.document.getElementById('dashboard-frame');
-    parent.resizeIframe( iframe );
-  }, 2000);
+  // setTimeout(function(){
+  //   var iframe = window.parent.document.getElementById('dashboard-frame');
+  //   parent.resizeIframe( iframe );
+  // }, 2000);
+
+  $('#custom-inp-top').on('change', function(){
+    switch (this.value) {
+      case 'Last Week':
+          $("#new-account").html(7);
+          $("#total-expenses").html(1);
+          $("#company-value").html('30Jt');
+          $("#new-employees").html('2');
+        break;
+      case 'Last Month':
+          $("#new-account").html(29);
+          $("#total-expenses").html(7);
+          $("#company-value").html('120Jt');
+          $("#new-employees").html('11');
+        break;
+      case 'Last Year':
+          $("#new-account").html(348);
+          $("#total-expenses").html(91);
+          $("#company-value").html('1,45M');
+          $("#new-employees").html('142');
+        break;
+      default:
+
+    }
+  });
+
 });
