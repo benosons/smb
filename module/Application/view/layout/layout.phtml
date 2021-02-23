@@ -2690,6 +2690,33 @@
             addtab(id_li,id_content,label_tab,src);
           }
 
+          function openProfile(name){
+            var id_li = name;
+            var id_content = name+'_tab';
+            var label_tab = 'Setup '+name;
+            var src = '';
+            switch (name) {
+              case 'digi hotel':
+                src = "https://www.digihotel.id/";
+                break;
+              case 'digi clinic':
+              src = "https://www.digiclinic.id/";
+                break;
+              case 'digi erp':
+              src = "https://digierp.id/";
+                break;
+              case 'bonum':
+              src = "https://bonum.id/";
+                break;
+              case 'sakoo':
+              src = "https://sakoo.id/";
+                break;
+              default:
+
+            }
+            addtab(id_li,id_content,label_tab,src);
+          }
+
         </script>
 </body>
 </html>
