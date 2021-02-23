@@ -93,7 +93,7 @@ function loadtable(table){
                           <li class="p-0 list-group-item" style="height: 210px;">
                               <div class="widget-content">
                                   <div class="text-center">
-                                      <h6 class="widget-heading mb-0 opacity-4">`+desc+`.</h6>
+                                      <h6 class="widget-heading mb-0 opacity-4" style="text-align: justify;">`+desc+`.</h6>
                                   </div>
                               </div>
                           </li>
