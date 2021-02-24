@@ -93,4 +93,27 @@ class ViewController extends \Application\Master\GlobalActionController
         return $view;
     }
 
+    public function usersIndexAction(){
+        $this->isLoggedIn();
+
+        $view        = new ViewModel();
+        $result      = new Result();
+
+        $userSession = $this->getSession();
+        $owner       = $userSession->owner();
+
+        /* get url */
+        $uri     = $this->getRequest()->getUri();
+        $baseurl = sprintf('//%s', $uri->getHost());
+
+        $this->headScript->appendScript(' var baseURL = "' . $baseurl . '"');
+        $this->headScript->appendScript(' var PHRASE = "' . self::PHRASE . '"');
+        $this->headScript->appendScript(' var CODE_SUCCESS = "' . $result::CODE_SUCCESS . '"');
+        $this->headScript->appendFile('/action-js/view-js/users-index.js');
+
+
+        $this->layout("layout/layout_iframe");
+        return $view;
+    }
+
 }

@@ -315,6 +315,142 @@ class JsondataController extends \Application\Master\GlobalActionController
 
     }
 
+    public function loadAllUserAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+                    $isUserid 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $model   	    = new \Application\Model\Param($storage);
+
+                        /* check injeksi bisi karbu */
+                        $ipoly          = self::antiInjection($isData->ipoly ?? null);
+
+                        $where          = "iduser not in ('$isUserid')";
+
+                        $result         = $model->loadGlobal("*", 'user_data_header', $where);
+
+                        /* encrypt dan return data */
+                        if($result->code == $result::CODE_SUCCESS){
+
+                            $isEncrypt = self::cryptoJsAesEncrypt(self::PHRASE, $result->toJson());
+
+                            if($isEncrypt){
+                                $result->data  = $isEncrypt;
+                            }else{
+                                $result->code = $result::CENC_FAILED;
+                                $result->info = $result::IENC_FAILED;
+                            }
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
+    public function addUserAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+
+                    $userID 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+
+                        $model   	    = new \Application\Model\Param($storage);
+
+                        $lastid        = $model->loadGlobal("max(iduser) as id", 'user_data_header', '');
+
+                        $ids = (int) $lastid->data[0]['id'];
+
+                        $dataArr        = array(
+                            'iduser'            => $ids + 1,
+                            'username'          => self::antiInjection($isData->username ?? null),
+                            'password'          => md5(self::antiInjection($isData->password ?? null)),
+                            'name'              => self::antiInjection($isData->name ?? null),
+                            'role'              => self::antiInjection($isData->role ?? null),
+                            'status'            => '10',
+                            'create_dtm'        => $this->STORAGE_NOW(),
+                            'update_date'       => $this->STORAGE_NOW(),
+                        );
+
+                        $result         = $model->saveGlobal($dataArr, 'user_data_header', true);
+
+                        if($result->code == $result::CODE_SUCCESS){
+
+
+                        }else{
+                          $result->code = $result::CDEC_FAILED;
+                          $result->info = $result::IDEC_FAILED;
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
     public function saveprofileAction(){
 
         $this->checkCsrf(); // jika false return code error

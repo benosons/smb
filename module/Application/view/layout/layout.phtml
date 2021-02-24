@@ -1227,6 +1227,12 @@
                                     </a>
 
                                 </li>
+                                <li id="li-users">
+                                    <a href="#" onclick="openUsers()">
+                                        <i class="metismenu-icon pe-7s-users"></i>Users
+                                    </a>
+
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -2985,6 +2991,7 @@
         ?>
 
         <?= $this->inlineScript() ?>
+
         <script type="text/javascript">
 
           function openDashboard(){
@@ -3035,6 +3042,14 @@
               default:
 
             }
+            addtab(id_li,id_content,label_tab,src);
+          }
+
+          function openUsers(){
+            var id_li = 'users';
+            var id_content = 'users_tab';
+            var label_tab = 'Setup Users';
+            var src = '/view/users-index';
             addtab(id_li,id_content,label_tab,src);
           }
 

@@ -155,8 +155,8 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
 
         try {
 
-            $stmt      = $this->_db->query(" SELECT TO_CHAR(NOW(), 'YYYY-MM-DD HH12:MI:SS') AS DATES ");
-            // $stmt      = $this->_db->query(" SELECT CURRENT_TIMESTAMP AS DATES ");
+            // $stmt      = $this->_db->query(" SELECT TO_CHAR(NOW(), 'YYYY-MM-DD HH12:MI:SS') AS DATES ");
+            $stmt      = $this->_db->query(" SELECT CURRENT_TIMESTAMP AS DATES ");
 
             $proced    = $stmt->execute();
 
@@ -168,7 +168,7 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
 
                 $result->code = $result::CODE_SUCCESS;
                 $result->info = $result::INFO_SUCCESS;
-                $result->data = $res['dates'];
+                $result->data = $res['DATES'];
 
 
             } else {
@@ -199,20 +199,20 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
                             // echo str_replace('"','',$insert->getSqlString());die;
 
             $res        = $this->execute($insert);
-            if($res){
+            // if($res){
 
-                $sequence  = $table.'_seq';
+                // $sequence  = $table.'_seq';
+                //
+                // $stmt      = $this->_db->query(" SELECT Currval('$sequence') LIMIT 1 ");
+                //
+                // $proced    = $stmt->execute();
+                //
+                // $res       = $proced->current();
 
-                $stmt      = $this->_db->query(" SELECT Currval('$sequence') LIMIT 1 ");
-
-                $proced    = $stmt->execute();
-
-                $res       = $proced->current();
-
-                if($res['currval']){
+                if($res){
                     $result->code = $result::CODE_SUCCESS;
                     $result->info = $result::INFO_SUCCESS;
-                    $result->data = $res['currval'];
+                    $result->data = $res;
                 }else{
                     $result->code = $result::CODE_FAILED;
                     $result->info = $result::INFO_FAILED;
@@ -220,16 +220,16 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
 
                 return $result;
 
-            }else{
-                if($res->getGeneratedValue()){
-                    $result->code = $result::CODE_SUCCESS;
-                    $result->info = $result::INFO_SUCCESS;
-                    $result->data = $res->getGeneratedValue();
-                }else{
-                    $result->code = $result::CODE_FAILED;
-                    $result->info = $result::INFO_FAILED;
-                }
-            }
+            // }else{
+            //     if($res->getGeneratedValue()){
+            //         $result->code = $result::CODE_SUCCESS;
+            //         $result->info = $result::INFO_SUCCESS;
+            //         $result->data = $res->getGeneratedValue();
+            //     }else{
+            //         $result->code = $result::CODE_FAILED;
+            //         $result->info = $result::INFO_FAILED;
+            //     }
+            // }
 
         }catch (\Zend\Db\Adapter\Exception\RuntimeException $ex) {
             $result->code = 3;
