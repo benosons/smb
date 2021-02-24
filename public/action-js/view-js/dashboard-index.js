@@ -16,20 +16,20 @@ $(document).ready(function(){
       case 'Last Week':
           $("#new-account").html(7);
           $("#total-expenses").html(1);
-          $("#company-value").html('30Jt');
-          $("#new-employees").html('2');
+          $("#company-value").html(8);
+          $("#new-employees").html(2);
         break;
       case 'Last Month':
           $("#new-account").html(29);
           $("#total-expenses").html(7);
-          $("#company-value").html('120Jt');
-          $("#new-employees").html('11');
+          $("#company-value").html(32);
+          $("#new-employees").html(11);
         break;
       case 'Last Year':
           $("#new-account").html(348);
           $("#total-expenses").html(91);
-          $("#company-value").html('1,45M');
-          $("#new-employees").html('142');
+          $("#company-value").html(145);
+          $("#new-employees").html(80);
         break;
       default:
 
