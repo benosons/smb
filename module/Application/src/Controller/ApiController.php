@@ -252,7 +252,6 @@ class ApiController extends \Application\Master\GlobalActionController {
                       break;
                   }
 
-
                   $data->id            = @$id->data[0]['id'];
                   $data->total_traffic = @$total_traffic->data[0]['total_traffic'];
                   $data->total_poc     = @$total_poc->data[0]['total_poc'];
@@ -263,6 +262,53 @@ class ApiController extends \Application\Master\GlobalActionController {
                   $data->income        = @$income->data[0]['income'];
 
                   $listdata = $data;
+
+                }else if($mode == 2){
+                  $datas = [];
+                  $resdigihotel   = $model->loadGlobal("sum(total_price) as total", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                  $resdigiclinic  = $model->loadGlobal("sum(price) as total", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
+                  $resdigierp     = $model->loadGlobal("sum(total_price) as total", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
+                  $resbonum       = $model->loadGlobal("sum(product_totalModal) as total", 'dma_digibiz_bonum_transaction', '');
+                  $ressakoo       = $model->loadGlobal("sum(harga_beli) * sum(qty) as total", 'dma_sakoo_list_transaction', '');
+                  $mydate=getdate(date("U"));
+                  $update_date    = $mydate['mday'] .'-'. $mydate['mon'] .'-'. $mydate['year'];
+
+                  $datas['digihotel'] = [
+                    'name'  => 'Digi Hotel',
+                    'total' => 'Rp '.number_format($resdigihotel->data[0]['total'],0,',','.'),
+                    'image' => $baseurl."/assets/images/avatars/Digi Hotel.jpg",
+                    'date'  => $update_date
+                  ];
+
+                  $datas['digiclinic'] = [
+                    'name'  => 'Digi Clinic',
+                    'total' => 'Rp '.number_format($resdigiclinic->data[0]['total'],0,',','.'),
+                    'image' => $baseurl."/assets/images/avatars/Digi Clinic.jpg",
+                    'date'  => $update_date
+                  ];
+
+                  $datas['digierp'] = [
+                    'name'  => 'Digi ERP',
+                    'total' => 'Rp '.number_format($resdigierp->data[0]['total'],0,',','.'),
+                    'image' => $baseurl."/assets/images/avatars/Digi ERP.jpg",
+                    'date'  => $update_date
+                  ];
+
+                  $datas['bonum'] = [
+                    'name'  => 'Bonum',
+                    'total' => 'Rp '.number_format($resbonum->data[0]['total'],0,',','.'),
+                    'image' => $baseurl."/assets/images/avatars/Bonum.jpg",
+                    'date'  => $update_date
+                  ];
+
+                  $datas['sakoo'] = [
+                    'name'  => 'Sakoo',
+                    'total' => 'Rp '.number_format($ressakoo->data[0]['total'],0,',','.'),
+                    'image' => $baseurl."/assets/images/avatars/Sakoo.jpg",
+                    'date'  => $update_date
+                  ];
+
+                  $listdata = $datas;
                 }
 
                 if($listdata){
@@ -270,7 +316,7 @@ class ApiController extends \Application\Master\GlobalActionController {
                     $result->code = 0;
                     $result->info = 'Sukses';
                     $result->data = $listdata;
-                    $result->guid = $jsonResponse->token;
+                    $result->guid = $post['csrf'];
                 }else{
                     $result->code = $jsonResponse->code;
                     $result->info = $jsonResponse->status;

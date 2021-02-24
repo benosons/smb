@@ -209,6 +209,112 @@ class JsondataController extends \Application\Master\GlobalActionController
 
     }
 
+    public function loadexpAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+                    $isUserid 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $model   	    = new \Application\Model\Param($storage);
+
+                        /* check injeksi bisi karbu */
+                        $ipoly          = self::antiInjection($isData->ipoly ?? null);
+
+                        // $where          = "table_schema = '".getenv("DB")."'";
+                        $datas = [];
+                        $resdigihotel   = $model->loadGlobal("sum(total_price) as total", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
+                        $resdigiclinic  = $model->loadGlobal("sum(price) as total", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
+                        $resdigierp     = $model->loadGlobal("sum(total_price) as total", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
+                        $resbonum       = $model->loadGlobal("sum(product_totalModal) as total", 'dma_digibiz_bonum_transaction', '');
+                        $ressakoo       = $model->loadGlobal("sum(harga_beli) * sum(qty) as total", 'dma_sakoo_list_transaction', '');
+                        $mydate=getdate(date("U"));
+                        $update_date    = $mydate['mday'] .'-'. $mydate['mon'] .'-'. $mydate['year'];
+
+                        $datas['digihotel'] = [
+                          'name'  => 'Digi Hotel',
+                          'total' => 'Rp '.number_format($resdigihotel->data[0]['total'],0,',','.'),
+                          'image' => "/assets/images/avatars/Digi Hotel.jpg",
+                          'date'  => $update_date
+                        ];
+
+                        $datas['digiclinic'] = [
+                          'name'  => 'Digi Clinic',
+                          'total' => 'Rp '.number_format($resdigiclinic->data[0]['total'],0,',','.'),
+                          'image' => "/assets/images/avatars/Digi Clinic.jpg",
+                          'date'  => $update_date
+                        ];
+
+                        $datas['digierp'] = [
+                          'name'  => 'Digi ERP',
+                          'total' => 'Rp '.number_format($resdigierp->data[0]['total'],0,',','.'),
+                          'image' => "/assets/images/avatars/Digi ERP.jpg",
+                          'date'  => $update_date
+                        ];
+
+                        $datas['bonum'] = [
+                          'name'  => 'Bonum',
+                          'total' => 'Rp '.number_format($resbonum->data[0]['total'],0,',','.'),
+                          'image' => "/assets/images/avatars/Bonum.jpg",
+                          'date'  => $update_date
+                        ];
+
+                        $datas['sakoo'] = [
+                          'name'  => 'Sakoo',
+                          'total' => 'Rp '.number_format($ressakoo->data[0]['total'],0,',','.'),
+                          'image' => "/assets/images/avatars/Sakoo.jpg",
+                          'date'  => $update_date
+                        ];
+                        $result->data = $datas;
+                        /* encrypt dan return data */
+                        if($result){
+
+                            $isEncrypt = self::cryptoJsAesEncrypt(self::PHRASE, $result->toJson());
+
+                            if($isEncrypt){
+                                $result->data  = $isEncrypt;
+                            }else{
+                                $result->code = $result::CENC_FAILED;
+                                $result->info = $result::IENC_FAILED;
+                            }
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
     public function saveprofileAction(){
 
         $this->checkCsrf(); // jika false return code error
