@@ -522,6 +522,64 @@ class JsondataController extends \Application\Master\GlobalActionController
 
     }
 
+    public function deleteUserAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+
+                    $userID 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+
+                        $model   	    = new \Application\Model\Param($storage);
+                        
+                        $where          = "iduser = '".$isData->id."'";
+
+                        $result         = $model->deleteGlobal('user_data_header', $where);
+
+                        if($result->code == $result::CODE_SUCCESS){
+
+
+                        }else{
+                          $result->code = $result::CDEC_FAILED;
+                          $result->info = $result::IDEC_FAILED;
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
     public function saveprofileAction(){
 
         $this->checkCsrf(); // jika false return code error

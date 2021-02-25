@@ -98,9 +98,12 @@ function loadusers(table){
                       {
                           mRender: function ( data, type, row ) {
                             var el = `<div role="group" class="btn-group-sm btn-group btn-group-toggle">
-                                <button type="button" class="btn btn-warning" onclick="action('edit',`+row.iduser+`,'`+row.iduser+`')"><i class="fa fa-edit" aria-hidden="true" title="Copy to use edit"></i></button>
                                 <button type="button" class="btn btn-danger" onclick="action('hapus',`+row.iduser+`,'`+row.iduser+`')"><i class="fa fa-trash" aria-hidden="true" title="Copy to use edit"></i></button>
                             </div>`;
+                            // var el = `<div role="group" class="btn-group-sm btn-group btn-group-toggle">
+                            //     <button type="button" class="btn btn-warning" onclick="action('edit',`+row.iduser+`,'`+row.iduser+`')"><i class="fa fa-edit" aria-hidden="true" title="Copy to use edit"></i></button>
+                            //     <button type="button" class="btn btn-danger" onclick="action('hapus',`+row.iduser+`,'`+row.iduser+`')"><i class="fa fa-trash" aria-hidden="true" title="Copy to use edit"></i></button>
+                            // </div>`;
 
                               return el;
                           },
@@ -140,6 +143,32 @@ function adduser(obj){
 		url: baseURL + '/jsondata/add-user',
 		data :{
 			iparam	    : cryptoEncrypt(PHRASE, obj),
+		},
+		success: function(response){
+
+      // if(response.code == CODE_SUCCESS){
+      //     let result = cryptoDecrypt(PHRASE, response);
+      //     let data = result.data;
+      //   }
+      var iframe = parent.document.getElementById('users-frame');
+      iframe.src = iframe.src;
+        $('.btn-secondary').trigger('click');
+      }
+    })
+  }
+
+function action(mode, ids){
+  let isObject       = {};
+      isObject.id = ids;
+
+	$.ajax({
+    bServerSide: true,
+    bDestroy: true,
+		type: 'POST',
+		dataType: 'json',
+		url: baseURL + '/jsondata/delete-user',
+		data :{
+			iparam	    : cryptoEncrypt(PHRASE, isObject),
 		},
 		success: function(response){
 
