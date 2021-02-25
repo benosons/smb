@@ -1763,5 +1763,182 @@ class Mysql extends \Khansia\Db\Storage implements Skeleton {
 
     }
 
+    public function loadActiveUser(){
 
+        $result = new Result();
+
+        try{
+            $listdata = array();
+
+                $sql = "select (
+                    (select count(jml_aktif) from dma_digibiz_mytds_dxb_digihotel_dashboard_v WHERE jml_aktif=1) + 
+                    
+                    (select count(mulai_aktif) from dma_digibiz_mytds_dxb_digiclinic_dashboard_v where mulai_aktif != '') +
+                    
+                    (select count(is_active) from dma_digibiz_mytds_dxb_digierp_dashboard_v where is_active = 1) +
+                    
+                    (select count(lastLogin) from dma_digibiz_bonum_user WHERE DATE_FORMAT(lastLogin,'%H:%i:%s') != '00:00:00') + 
+                    
+                    (select count(active_until) from dma_sakoo_user_api)) as total_active_user";
+
+                $stmt     = $this->_db->query($sql);
+                $getData  = $stmt->execute();
+
+                foreach($getData as $val){
+                    array_push($listdata, $val);
+                }
+
+
+            if ($listdata) {
+                $result->code = $result::CODE_SUCCESS;
+                $result->info = $result::INFO_SUCCESS;
+                $result->data = $listdata;
+            } else {
+                $result->code = $result::CODE_FAILED;
+                $result->info = $result::INFO_FAILED;
+            }
+
+        }catch (\Zend\Db\Adapter\Exception\RuntimeException $ex) {
+            $result->code = 3;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        } catch (\Exception $ex) {
+            $result->code = 4;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        }
+        return $result;
+
+    }
+
+    public function loadMonthlyUser(){
+
+        $result = new Result();
+
+        try{
+            $listdata = array();
+            $listdata_digihotel = array();
+            $listdata_digiclinic = array();
+            $listdata_digierp = array();
+            $listdata_bonum = array();
+            $listdata_sakoo = array();
+
+                $sql_digihotel = "select MONTHNAME(end_date), count(*) as total from dma_digibiz_mytds_dxb_digihotel_dashboard_v where jml_aktif = 1
+                                    GROUP BY MONTHNAME(end_date)";
+
+                $stmt_digihotel     = $this->_db->query($sql_digihotel);
+                $getData_digihotel  = $stmt_digihotel->execute();
+
+                foreach($getData_digihotel as $val){
+                    array_push($listdata_digihotel, $val);
+                }
+
+
+                $sql_digiclinic = "select MONTHNAME(mulai_aktif), count(*) as total from dma_digibiz_mytds_dxb_digiclinic_dashboard_v where mulai_aktif != ''
+                                    GROUP BY MONTHNAME(mulai_aktif)";
+
+                $stmt_digiclinic     = $this->_db->query($sql_digiclinic);
+                $getData_digiclinic  = $stmt_digiclinic->execute();
+
+                foreach($getData_digiclinic as $val){
+                    array_push($listdata_digiclinic, $val);
+                }
+
+
+                $sql_digierp = "select MONTHNAME(end_date), count(*) as total from dma_digibiz_mytds_dxb_digierp_dashboard_v where is_active = 1
+                                GROUP BY MONTHNAME(end_date)";
+
+                $stmt_digierp     = $this->_db->query($sql_digierp);
+                $getData_digierp  = $stmt_digierp->execute();
+
+                foreach($getData_digierp as $val){
+                    array_push($listdata_digierp, $val);
+                }
+
+
+                $sql_bonum = "select MONTHNAME(lastLogin), count(*) as total from dma_digibiz_bonum_user WHERE DATE_FORMAT(lastLogin,'%H:%i:%s') != '00:00:00'
+                                GROUP BY MONTHNAME(lastLogin)";
+
+                $stmt_bonum     = $this->_db->query($sql_bonum);
+                $getData_bonum  = $stmt_bonum->execute();
+
+                foreach($getData_bonum as $val){
+                    array_push($listdata_bonum, $val);
+                }
+
+                $sql_sakoo = "select MONTHNAME(active_until), count(*) as total from dma_sakoo_user_api
+                                GROUP BY MONTHNAME(active_until)";
+
+                $stmt_sakoo     = $this->_db->query($sql_sakoo);
+                $getData_sakoo  = $stmt_sakoo->execute();
+
+                foreach($getData_sakoo as $val){
+                    array_push($listdata_sakoo, $val);
+                }
+
+                
+                $listdata = count($listdata_digihotel)+count($listdata_digiclinic)+count($listdata_digierp)+count($listdata_bonum)+count($listdata_sakoo);
+                
+            if ($listdata) {
+                $result->code = $result::CODE_SUCCESS;
+                $result->info = $result::INFO_SUCCESS;
+                $result->data = $listdata;
+            } else {
+                $result->code = $result::CODE_FAILED;
+                $result->info = $result::INFO_FAILED;
+            }
+
+        }catch (\Zend\Db\Adapter\Exception\RuntimeException $ex) {
+            $result->code = 3;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        } catch (\Exception $ex) {
+            $result->code = 4;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        }
+        return $result;
+
+    }
+
+    public function loadWeeklyUser(){
+
+        $result = new Result();
+
+        try{
+                $listdata = array();
+
+                $sql = "select 
+                ( select count(*) as total from dma_digibiz_mytds_dxb_digihotel_dashboard_v where jml_aktif = 1 and DATE(end_date) = DATE_SUB(CURDATE(), INTERVAL 7 DAY) ) +
+                
+                ( select count(*) as total from dma_digibiz_mytds_dxb_digiclinic_dashboard_v where mulai_aktif != '' and DATE(mulai_aktif) = DATE_SUB(CURDATE(), INTERVAL 7 DAY) ) +
+                
+                ( select count(*) as total from dma_digibiz_mytds_dxb_digierp_dashboard_v where is_active = 1 and DATE(end_date) = DATE_SUB(CURDATE(), INTERVAL 7 DAY) ) +
+                
+                ( select count(*) as total from dma_digibiz_bonum_user WHERE DATE_FORMAT(lastLogin,'%H:%i:%s') != '00:00:00' and DATE(lastLogin) = DATE_SUB(CURDATE(), INTERVAL 7 DAY) ) +
+                
+                ( select count(*) as total from dma_sakoo_user_api where DATE(active_until) = DATE_SUB(CURDATE(), INTERVAL 7 DAY) ) as total";
+
+                $stmt     = $this->_db->query($sql);
+                $getData  = $stmt->execute();
+
+                foreach($getData as $val){
+                    array_push($listdata, $val);
+                }
+                
+            if ($listdata) {
+                $result->code = $result::CODE_SUCCESS;
+                $result->info = $result::INFO_SUCCESS;
+                $result->data = $listdata;
+            } else {
+                $result->code = $result::CODE_FAILED;
+                $result->info = $result::INFO_FAILED;
+            }
+
+        }catch (\Zend\Db\Adapter\Exception\RuntimeException $ex) {
+            $result->code = 3;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        } catch (\Exception $ex) {
+            $result->code = 4;
+            $result->info = 'ERROR : ' . $ex->getMessage();
+        }
+        return $result;
+
+    }
 }

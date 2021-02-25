@@ -187,9 +187,21 @@ class Param extends Mapper {
         return $data;
     }
 
-		public function getjadwal($param=null, $param1=null, $param2=null){
+	public function loadActiveUser(){
 
-        $data = $this->_storage->getjadwal($param, $param1, $param2);
+        $data = $this->_storage->loadActiveUser();
+        return $data;
+    }
+
+    public function loadMonthlyUser(){
+
+        $data = $this->_storage->loadMonthlyUser();
+        return $data;
+    }
+
+    public function loadWeeklyUser(){
+
+        $data = $this->_storage->loadWeeklyUser();
         return $data;
     }
 

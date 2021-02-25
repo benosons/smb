@@ -309,6 +309,16 @@ class ApiController extends \Application\Master\GlobalActionController {
                   ];
 
                   $listdata = $datas;
+                }else if($mode == 3){
+                    $datas = [];
+                    $active_user    = $model->loadActiveUser()->data[0]['total_active_user'];
+                    $monthly_user   = $model->loadMonthlyUser()->data;
+                    $weekly_user    = $model->loadWeeklyUser()->data[0]['total'];
+                    
+                    $datas['active_user'] = $active_user;
+                    $datas['monthly_active_user'] = $monthly_user;
+                    $datas['weekly_active_user'] = $weekly_user;
+                    $listdata = $datas;
                 }
 
                 if($listdata){

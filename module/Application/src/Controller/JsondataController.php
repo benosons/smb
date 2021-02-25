@@ -315,6 +315,77 @@ class JsondataController extends \Application\Master\GlobalActionController
 
     }
 
+    public function loadDashAction(){
+
+        $this->checkCsrf(); // jika false return code error
+
+        $result      = new Result();
+
+        if($this->isLoggedIn()){
+
+            $request     = $this->getRequest();
+
+            if ($request->isPost()) {
+
+                try{
+
+                    $userSession    = $this->getSession();
+                    $isUserid 		= $userSession->get('user_id');
+
+                    $isData         = self::cryptoJsAesDecrypt(self::PHRASE, $this->antiStealth('iparam') ?? null); // buka bukaan
+
+                    if($isData){ // is true / istri
+
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $model   	    = new \Application\Model\Param($storage);
+
+                        /* check injeksi bisi karbu */
+                        $ipoly          = self::antiInjection($isData->ipoly ?? null);
+
+                        // $where          = "table_schema = '".getenv("DB")."'";
+                        $datas = [];
+                        $active_user    = $model->loadActiveUser()->data[0]['total_active_user'];
+                        $monthly_user   = $model->loadMonthlyUser()->data;
+                        $weekly_user    = $model->loadWeeklyUser()->data[0]['total'];
+                       
+                        $datas['active_user'] = $active_user;
+                        $datas['monthly_active_user'] = $monthly_user;
+                        $datas['weekly_active_user'] = $weekly_user;
+                        $result->data = $datas;
+                        /* encrypt dan return data */
+                        if($result){
+
+                            $isEncrypt = self::cryptoJsAesEncrypt(self::PHRASE, $result->toJson());
+
+                            if($isEncrypt){
+                                $result->data  = $isEncrypt;
+                            }else{
+                                $result->code = $result::CENC_FAILED;
+                                $result->info = $result::IENC_FAILED;
+                            }
+                        }
+
+                    }else{
+                        $result->code = $result::CDEC_FAILED;
+                        $result->info = $result::IDEC_FAILED;
+                    }
+
+
+                }catch (\Exception $exc) {
+                    $result = new Result(0,1,$exc->getMessage() .'-'.$exc->getTraceAsString());
+                }
+            }else{
+                $result = new Result(0,401, self::DEFAULT_ERROR);
+            }
+        }else{
+            $result = new Result(0,401, self::DEFAULT_ERROR);
+        }
+
+        /* return data */
+        return $this->getOutput($result->toJson());
+
+    }
+
     public function loadAllUserAction(){
 
         $this->checkCsrf(); // jika false return code error

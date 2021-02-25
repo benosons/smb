@@ -3,6 +3,9 @@ $(document).ready(function(){
   $('li#li-smb', parent.document).removeClass('mm-active');
   $('li#li-smb > a', parent.document).removeClass('mm-active');
 
+  $('li#li-users', parent.document).removeClass('mm-active');
+  $('li#li-users > a', parent.document).removeClass('mm-active');
+
   $('li#li-dashboard', parent.document).addClass('mm-active');
   $('li#li-dashboard > a', parent.document).addClass('mm-active');
 
@@ -37,6 +40,7 @@ $(document).ready(function(){
   });
 
   loadexp();
+  loaddash();
 });
 
 function loadexp(){
@@ -98,3 +102,26 @@ function loadexp(){
       }
     })
   }
+
+function loaddash(){
+  let isObject   = {};
+  isObject.table = '';
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: baseURL + '/jsondata/load-dash',
+    data :{
+      iparam	    : cryptoEncrypt(PHRASE, isObject),
+    },
+    success: function(response){
+      if(response.code == CODE_SUCCESS){
+          let result = cryptoDecrypt(PHRASE, response.data);
+          let data = result.data;
+          $('#user-active').text(data['active_user']);
+          $('#monthly-user').text(data['monthly_active_user']);
+          $('#weekly-user').text(data['weekly_active_user']);
+
+      }
+    }
+  })
+}
