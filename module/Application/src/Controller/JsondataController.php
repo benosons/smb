@@ -165,9 +165,9 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                     if($isData){ // is true / istri
 
-                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
+                        print_r($storage);die;
                         $model   	    = new \Application\Model\Param($storage);
-
                         /* check injeksi bisi karbu */
                         $ipoly          = self::antiInjection($isData->ipoly ?? null);
 

@@ -43,7 +43,7 @@ function loadsales(table){
           $('#churn_rate').html(data.churn_rate+' <small class="opacity-5 pl-1">%</small>');
           $('#active_user').html(data.active_user+' <small class="opacity-5 pl-1">Monthly</small>');
           $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user)+' <small class="opacity-5 pl-1">This Month</small>');
-          $('#total-exp').html(formatRupiah(data.total_expense, 'Rp '));
+          $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
       }
     }
   });

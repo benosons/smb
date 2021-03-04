@@ -193,9 +193,17 @@ return [
           'host'      => getenv('HOST'),
           'username'  => getenv('UNAME'),
           'password'  => getenv('PWD'),
-          'port'      =>  3306,
+          'port'      =>  14736,
           'schema'    => getenv('DB'),
         ),
+        'bright'     => array(
+            'driver'    => 'Pdo',
+            'host'      => 'a29.h.1elf.net',
+            'username'  => 'bdm_pg01',
+            'password'  => '2bf4fd3dde73',
+            'port'      =>  14736,
+            'schema'    => 'bdm_pg',
+          ),
     ),
 
     'php' => array(

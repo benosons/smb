@@ -77,7 +77,7 @@ function loadtable(table){
 
             }
               content += `<div class="col-sm-12 col-md-3 col-xl-3">
-                  <div class="card-shadow-primary card-border mb-3 profile-responsive card">
+                  <div class="card-shadow-primary card-border mb-3 profile-responsive card" style="border: 1px solid #3f6ad8;">
                     <div class="dropdown-menu-header">
                         <div class="dropdown-menu-header-inner bg-primary">
                             <div class="menu-header-content">
@@ -96,21 +96,21 @@ function loadtable(table){
                           <li class="p-0 list-group-item" style="height: 210px;">
                               <div class="widget-content">
                                   <div class="text-center">
-                                      <h6 class="widget-heading mb-0 opacity-4" style="text-align: none;">`+desc+`.</h6>
+                                      <h6 class="widget-heading mb-0 opacity-6" style="text-align: none;color:black;">`+desc+`.</h6>
                                   </div>
                               </div>
                           </li>
-                          <li class="p-0 list-group-item">
+                          <li class="p-0 list-group-item" style="border-top: 1px solid #3f6ad8;">
                               <div class="grid-menu grid-menu-2col">
                                   <div class="no-gutters row">
                                       <div class="col-sm-6">
                                           <div class="p-1">
                                               <button onclick="parent.openDetailVisit('`+value.toLowerCase()+`')" class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning"><i
-                                                      class="lnr-chart-bars text-warning opacity-7 btn-icon-wrapper mb-2"></i>Visit
+                                                      class="lnr-chart-bars text-warning opacity-7 btn-icon-wrapper mb-2"></i>View
                                               </button>
                                           </div>
                                       </div>
-                                      <div class="col-sm-6">
+                                      <div class="col-sm-6" style="border-left: 1px solid #3f6ad8;">
                                           <div class="p-1">
                                               <button onclick="parent.openProfile('`+value.toLowerCase()+`')" class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning"><i
                                                       class="lnr-license text-warning opacity-7 btn-icon-wrapper mb-2"></i>Profile

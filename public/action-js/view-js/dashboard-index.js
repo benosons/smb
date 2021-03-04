@@ -79,15 +79,15 @@ function loadexp(){
                     <div class="widget-content p-0">
                         <div class="widget-content-outer">
                             <div class="widget-content-wrapper">
-                                <div class="widget-content-left pr-2">
-                                    <div class="widget-numbers fsize-1 text-danger">`+result.data[key]['total']+`</div>
-                                </div>
-                                <div class="widget-content-right w-100">
-                                    <div class="progress-bar-xs progress">
-                                        <div class="progress-bar bg-danger" role="progressbar"
-                                            aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;">
+                            <div class="widget-content-right w-100">
+                                <div class="progress-bar-xs progress">
+                                    <div class="progress-bar bg-danger" role="progressbar"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="widget-content-left pr-2">
+                                    <div class="widget-numbers fsize-1 text-danger">`+result.data[key]['total']+`</div>
                                 </div>
                             </div>
                         </div>

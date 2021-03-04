@@ -118,6 +118,21 @@ class GlobalActionController extends \Khansia\Mvc\Controller {
         return $adapter;
     }
 
+    public function getDbBright($module = 'bright') {
+
+        $adapter = parent::getDb($module);
+
+        /* set date format as mysql standard */
+        $formats = array(
+          'NLS_TIME_FORMAT'         => "HH24:MI:SS",
+          'NLS_DATE_FORMAT'         => "YYYY-MM-DD HH24:MI:SS",
+          'NLS_TIMESTAMP_FORMAT'    => "YYYY-MM-DD HH24:MI:SS",
+          'NLS_TIMESTAMP_TZ_FORMAT' => "YYYY-MM-DD HH24:MI:SS TZH:TZM"
+        );
+
+        return $adapter;
+    }
+
     protected function isLoggedIn($anum=null) {
         $actionName     = $this->params('action');
         $controllerName = $this->params('controller');
