@@ -166,12 +166,11 @@ class JsondataController extends \Application\Master\GlobalActionController
                     if($isData){ // is true / istri
 
                         $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
-                        print_r($storage);die;
                         $model   	    = new \Application\Model\Param($storage);
                         /* check injeksi bisi karbu */
                         $ipoly          = self::antiInjection($isData->ipoly ?? null);
 
-                        $where          = "table_schema = '".getenv("DB")."'";
+                        $where          = "table_schema = 'bdm_pg'";
 
                         $result         = $model->loadGlobal("table_name", 'information_schema.tables', $where);
 
