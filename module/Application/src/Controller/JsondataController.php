@@ -44,7 +44,7 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                     if($isData){ // is true / istri
 
-                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
                         $model   	    = new \Application\Model\Param($storage);
 
                         /* check injeksi bisi karbu */
@@ -229,7 +229,7 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                     if($isData){ // is true / istri
 
-                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
                         $model   	    = new \Application\Model\Param($storage);
 
                         /* check injeksi bisi karbu */
@@ -335,7 +335,7 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                     if($isData){ // is true / istri
 
-                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                        $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
                         $model   	    = new \Application\Model\Param($storage);
 
                         /* check injeksi bisi karbu */
@@ -346,7 +346,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $active_user    = $model->loadActiveUser()->data[0]['total_active_user'];
                         $monthly_user   = $model->loadMonthlyUser()->data;
                         $weekly_user    = $model->loadWeeklyUser()->data[0]['total'];
-                       
+
                         $datas['active_user'] = $active_user;
                         $datas['monthly_active_user'] = $monthly_user;
                         $datas['weekly_active_user'] = $weekly_user;
@@ -546,7 +546,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
 
                         $model   	    = new \Application\Model\Param($storage);
-                        
+
                         $where          = "iduser = '".$isData->id."'";
 
                         $result         = $model->deleteGlobal('user_data_header', $where);

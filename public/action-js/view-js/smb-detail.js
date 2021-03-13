@@ -18,7 +18,7 @@ $(document).ready(function(){
   $('#vendor-name').html(ven);
   $('#vendor-name-1').html(ven);
   $('#vendor-logo-').attr('src', '/assets/images/logo/'+ven+'.png');
-  // $('#vendor-name-2').html(ven.toUpperCase());
+  $('#vendor-name-2').html(ven.toUpperCase());
   loadsales(vendor);
 
 });
@@ -39,10 +39,15 @@ function loadsales(table){
           let result = cryptoDecrypt(PHRASE, response.data);
           let data = result.data;
           console.log(data)
-          $('#total_traffic').html(data.total_traffic+' <small class="opacity-5 pl-1">This Month</small>');
-          $('#churn_rate').html(data.churn_rate+' <small class="opacity-5 pl-1">%</small>');
-          $('#active_user').html(data.active_user+' <small class="opacity-5 pl-1">Monthly</small>');
-          $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user)+' <small class="opacity-5 pl-1">This Month</small>');
+          // $('#total_traffic').html(data.total_traffic+' <small class="opacity-5 pl-1">This Month</small>');
+          // $('#churn_rate').html(data.churn_rate+' <small class="opacity-5 pl-1">%</small>');
+          // $('#active_user').html(data.active_user+' <small class="opacity-5 pl-1">Monthly</small>');
+          // $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user)+' <small class="opacity-5 pl-1">This Month</small>');
+          // $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
+          $('#total_traffic').html(data.total_traffic);
+          $('#churn_rate').html(data.churn_rate);
+          $('#active_user').html(data.active_user);
+          $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user));
           $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
       }
     }

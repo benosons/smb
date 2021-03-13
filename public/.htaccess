@@ -17,6 +17,8 @@ RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
 RewriteRule ^(.*) - [E=BASE:%1]
 RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
 
+#DaniGDMK6-12
+
 setEnv HOST localhost
 setEnv UNAME root
 setEnv PWD DaniGDMK6-12

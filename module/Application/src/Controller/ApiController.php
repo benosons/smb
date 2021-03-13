@@ -144,7 +144,7 @@ class ApiController extends \Application\Master\GlobalActionController {
                 //     'user_name'  => $username,
                 //     'password'  => $password,
                 // );
-                $storage 	    = \Application\Model\Param\Storage::factory($this->getDb(), $this->getConfig());
+                $storage 	    = \Application\Model\Param\Storage::factory($this->getDbBright(), $this->getConfig());
                 $model   	    = new \Application\Model\Param($storage);
 
                 $uri     = $this->getRequest()->getUri();
@@ -314,7 +314,7 @@ class ApiController extends \Application\Master\GlobalActionController {
                     $active_user    = $model->loadActiveUser()->data[0]['total_active_user'];
                     $monthly_user   = $model->loadMonthlyUser()->data;
                     $weekly_user    = $model->loadWeeklyUser()->data[0]['total'];
-                    
+
                     $datas['active_user'] = $active_user;
                     $datas['monthly_active_user'] = $monthly_user;
                     $datas['weekly_active_user'] = $weekly_user;
