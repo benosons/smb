@@ -49,6 +49,8 @@ function loadsales(table){
           $('#active_user').html(data.active_user);
           $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user));
           $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
+          $('#total-merchant').html(data.total_merchant);
+          $('#total-merchant-ver').html(data.total_merchant_ver);
       }
     }
   });
