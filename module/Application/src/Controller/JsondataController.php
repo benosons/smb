@@ -53,14 +53,16 @@ class JsondataController extends \Application\Master\GlobalActionController
 
                         switch ($isData->table) {
                           case 'bonum':
-                                $total_traffic        = $model->loadGlobal("sum(totalTransaction) as total_traffic", 'dma_digibiz_bonum_user', '');
-                                $new_user             = $model->loadGlobal("count(registerDate) as new_user", 'dma_digibiz_bonum_user', 'MONTH(registerDate) = MONTH(CURRENT_DATE())');
-                                $active_user          = $model->loadGlobal("count(lastLogin) as active_user", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE())');
-                                $churn_rate           = $model->loadGlobal("round(count(*)/(select count(*) from dma_digibiz_bonum_user)) as churn_rate", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) != MONTH(CURRENT_DATE())');
-                                $total_expense        = $model->loadGlobal("sum(product_totalModal) as total_expense", 'dma_digibiz_bonum_transaction', '');
-                                $income               = $model->loadGlobal("sum(totalProfit) * sum(quantity) as income", 'dma_digibiz_bonum_transaction', '');
-                                $total_merchant       = $model->loadGlobal("count(*) as total_merchant", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', '');
-                                $total_merchant_ver   = $model->loadGlobal("count(*) as total_merchant_ver", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Verifikasi'");
+                                $total_traffic         = $model->loadGlobal("sum(totalTransaction) as total_traffic", 'dma_digibiz_bonum_user', '');
+                                $new_user              = $model->loadGlobal("count(registerDate) as new_user", 'dma_digibiz_bonum_user', 'MONTH(registerDate) = MONTH(CURRENT_DATE())');
+                                $active_user           = $model->loadGlobal("count(lastLogin) as active_user", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE())');
+                                $churn_rate            = $model->loadGlobal("round(count(*)/(select count(*) from dma_digibiz_bonum_user)) as churn_rate", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) != MONTH(CURRENT_DATE())');
+                                $total_expense         = $model->loadGlobal("sum(product_totalModal) as total_expense", 'dma_digibiz_bonum_transaction', '');
+                                $income                = $model->loadGlobal("sum(totalProfit) * sum(quantity) as income", 'dma_digibiz_bonum_transaction', '');
+                                $total_merchant        = $model->loadGlobal("count(*) as total_merchant", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', '');
+                                $total_merchant_ver    = $model->loadGlobal("count(*) as total_merchant_ver", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Verifikasi'");
+                                $total_merchant_regis  = $model->loadGlobal("count(*) as total_merchant_regis", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Register'");
+                                $total_merchant_aktif  = $model->loadGlobal("count(*) as total_merchant_aktif", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "lastdatetransaction is not null");
                             break;
                           case 'digi%20clinic':
                                 $total_traffic = $model->loadGlobal("sum(`usage`) as total_traffic", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
@@ -102,16 +104,18 @@ class JsondataController extends \Application\Master\GlobalActionController
                         }
 
 
-                        $data->id                   = @$id->data[0]['id'];
-                        $data->total_traffic        = @$total_traffic->data[0]['total_traffic'];
-                        $data->total_poc            = @$total_poc->data[0]['total_poc'];
-                        $data->new_user             = @$new_user->data[0]['new_user'];
-                        $data->active_user          = @$active_user->data[0]['active_user'];
-                        $data->churn_rate           = @$churn_rate->data[0]['churn_rate'];
-                        $data->total_expense        = @$total_expense->data[0]['total_expense'];
-                        $data->income               = @$income->data[0]['income'];
-                        $data->total_merchant       = @$total_merchant->data[0]['total_merchant'];
-                        $data->total_merchant_ver   = @$total_merchant_ver->data[0]['total_merchant_ver'];
+                        $data->id                     = @$id->data[0]['id'];
+                        $data->total_traffic          = @$total_traffic->data[0]['total_traffic'];
+                        $data->total_poc              = @$total_poc->data[0]['total_poc'];
+                        $data->new_user               = @$new_user->data[0]['new_user'];
+                        $data->active_user            = @$active_user->data[0]['active_user'];
+                        $data->churn_rate             = @$churn_rate->data[0]['churn_rate'];
+                        $data->total_expense          = @$total_expense->data[0]['total_expense'];
+                        $data->income                 = @$income->data[0]['income'];
+                        $data->total_merchant         = @$total_merchant->data[0]['total_merchant'];
+                        $data->total_merchant_ver     = @$total_merchant_ver->data[0]['total_merchant_ver'];
+                        $data->total_merchant_regis   = @$total_merchant_regis->data[0]['total_merchant_regis'];
+                        $data->total_merchant_aktif   = @$total_merchant_aktif->data[0]['total_merchant_aktif'];
 
                         $result->data = $data;
                         /* encrypt dan return data */

@@ -51,6 +51,9 @@ function loadsales(table){
           $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
           $('#total-merchant').html(data.total_merchant);
           $('#total-merchant-ver').html(data.total_merchant_ver);
+          $('#total-merchant-regis').html(data.total_merchant_regis);
+          $('#total-merchant-aktif').html(data.total_merchant_aktif);
+          $('#total-merchant-membeli').html(data.total_merchant_aktif);
       }
     }
   });
