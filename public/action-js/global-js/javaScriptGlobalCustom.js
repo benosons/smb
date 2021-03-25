@@ -8,14 +8,14 @@
 //		ADD TAB
 //-----------------------------------------------------------------------------------
 setInterval(function(){
-   $('.frame-container').css('height', '2000px' );
+   $('.frame-container').css('height', '3000px' );
 }, 2000);
 
 function resizeIframe(obj) {
     if(obj.contentWindow.document.body.scrollHeight<720){
         obj.style.height = 646  + 'px';
     }else{
-        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 100 +'px';
 
     }
 }

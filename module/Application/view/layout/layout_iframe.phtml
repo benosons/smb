@@ -33,6 +33,7 @@
 
     <link href="<?php $this->basePath();?>/assets/css/main.css" rel="stylesheet"></head>
     <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="<?php $this->basePath();?>/assets/dashboard/dist/apexcharts.css" rel="stylesheet">
 
     <script src="<?php $this->basePath();?>/assets/scripts/jquery-3.4.1.min.js"></script>
 
@@ -115,7 +116,8 @@
 
   <?= $this->headScript()->prependFile($this->basePath('/assets/scripts/main.js')) ?>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script></body>
-
+  <script type="text/javascript" src="<?php $this->basePath();?>/assets/dashboard/dist/apexcharts.js"></script>
+  <script type="text/javascript" src="<?php $this->basePath();?>/assets/dashboard/dist/apexcharts.min.js"></script>
   <?= $this->inlineScript() ?>
 </body>
 </html>
