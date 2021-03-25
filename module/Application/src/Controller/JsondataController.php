@@ -62,7 +62,8 @@ class JsondataController extends \Application\Master\GlobalActionController
                                 $total_merchant        = $model->loadGlobal("count(*) as total_merchant", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', '');
                                 $total_merchant_ver    = $model->loadGlobal("count(*) as total_merchant_ver", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Verifikasi'");
                                 $total_merchant_regis  = $model->loadGlobal("count(*) as total_merchant_regis", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Register'");
-                                $total_merchant_aktif  = $model->loadGlobal("count(*) as total_merchant_aktif", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "lastdatetransaction is not null");
+                                $total_merchant_aktif  = $model->loadGlobal("count(*) as total_merchant_aktif", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "lastdatetransaction != ''");
+                                $total_teman           = $model->loadGlobal("count(*) as total_teman", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "refferalcode != ''");
                             break;
                           case 'digi%20clinic':
                                 $total_traffic = $model->loadGlobal("sum(`usage`) as total_traffic", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
@@ -116,6 +117,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $data->total_merchant_ver     = @$total_merchant_ver->data[0]['total_merchant_ver'];
                         $data->total_merchant_regis   = @$total_merchant_regis->data[0]['total_merchant_regis'];
                         $data->total_merchant_aktif   = @$total_merchant_aktif->data[0]['total_merchant_aktif'];
+                        $data->total_teman            = @$total_teman->data[0]['total_teman'];
 
                         $result->data = $data;
                         /* encrypt dan return data */

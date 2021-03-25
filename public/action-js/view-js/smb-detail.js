@@ -38,22 +38,24 @@ function loadsales(table){
       if(response.code == CODE_SUCCESS){
           let result = cryptoDecrypt(PHRASE, response.data);
           let data = result.data;
-          console.log(data)
           // $('#total_traffic').html(data.total_traffic+' <small class="opacity-5 pl-1">This Month</small>');
           // $('#churn_rate').html(data.churn_rate+' <small class="opacity-5 pl-1">%</small>');
           // $('#active_user').html(data.active_user+' <small class="opacity-5 pl-1">Monthly</small>');
           // $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user)+' <small class="opacity-5 pl-1">This Month</small>');
           // $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
-          $('#total_traffic').html(data.total_traffic);
-          $('#churn_rate').html(data.churn_rate);
-          $('#active_user').html(data.active_user);
-          $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user));
-          $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
-          $('#total-merchant').html(data.total_merchant);
-          $('#total-merchant-ver').html(data.total_merchant_ver);
-          $('#total-merchant-regis').html(data.total_merchant_regis);
-          $('#total-merchant-aktif').html(data.total_merchant_aktif);
-          $('#total-merchant-membeli').html(data.total_merchant_aktif);
+          if(table == 'bonum'){
+            $('#total_traffic').html(data.total_traffic);
+            $('#churn_rate').html(data.churn_rate);
+            $('#active_user').html(data.active_user);
+            $('#sign_register_user').html(parseInt(data.active_user)+parseInt(data.new_user));
+            $('#total-revenue').html(formatRupiah(data.total_expense, 'Rp '));
+            $('#total-merchant').html(data.total_merchant);
+            $('#total-merchant-ver').html(data.total_merchant_ver);
+            $('#total-merchant-regis').html(data.total_merchant_regis);
+            $('#total-merchant-aktif').html(data.total_merchant_aktif);
+            $('#total-merchant-membeli').html('-');
+            $('#total-teman').html(data.total_teman);
+          }
       }
     }
   });
