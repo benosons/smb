@@ -253,7 +253,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                                 $detail_active_user     = $model->loadGlobal("count(*) as total, DATE_FORMAT(registerDate, '%Y-%m-%d') as periode", 'dma_digibiz_bonum_user', 'MONTH(lastLogin) = MONTH(CURRENT_DATE()) GROUP BY periode ORDER BY periode asc');
                                 $detail_merchant_ver    = $model->loadGlobal("count(*) as total, periode", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "status = 'Verifikasi' GROUP BY periode ORDER BY periode asc");
                                 $detail_merchant_active = $model->loadGlobal("count(*) as total, periode", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "lastdatetransaction != '' GROUP BY periode ORDER BY periode asc");
-
+                                $detail_transaksi       = $model->loadGlobal("sum(totalTransaction) as total, province", 'dma_digibiz_bonum_user', "totalTransaction != 0 and totalTransaction > 0 group by province");
                             break;
                           case 'digi%20clinic':
                                 $total_traffic = $model->loadGlobal("sum(`usage`) as total_traffic", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
@@ -299,6 +299,7 @@ class JsondataController extends \Application\Master\GlobalActionController
                         $data->detail_active_user     = @$detail_active_user->data;
                         $data->detail_merchant_ver    = @$detail_merchant_ver->data;
                         $data->detail_merchant_active = @$detail_merchant_active->data;
+                        $data->detail_transaksi       = @$detail_transaksi->data;
 
                         $result->data = $data;
                         /* encrypt dan return data */

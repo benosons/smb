@@ -84,29 +84,32 @@ function loadsalesdetail(table){
           if(table == 'bonum'){
             console.log(data);
 
-              let date_merch_regis    = data.detail_merchant_regis;
-              let periode_merch_regis = [];
-              let total_merch_regis   = [];
+              let data_merch_regis           = data.detail_merchant_regis;
+              let periode_merch_regis        = [];
+              let total_merch_regis          = [];
 
-              let data_new_user       = data.detail_new_user;
-              let periode_new_user    = [];
-              let total_new_user      = [];
+              let data_new_user              = data.detail_new_user;
+              let periode_new_user           = [];
+              let total_new_user             = [];
 
-              let data_active_user    = data.detail_active_user;
-              let periode_active_user = [];
-              let total_active_user   = [];
+              let data_active_user           = data.detail_active_user;
+              let periode_active_user        = [];
+              let total_active_user          = [];
 
-              let date_merch_ver      = data.detail_merchant_ver;
-              let periode_merch_ver   = [];
-              let total_merch_ver     = [];
+              let data_merch_ver             = data.detail_merchant_ver;
+              let periode_merch_ver          = [];
+              let total_merch_ver            = [];
 
-              let date_merch_active    = data.detail_merchant_active;
-              let periode_merch_active = [];
-              let total_merch_active   = [];
+              let data_merch_active          = data.detail_merchant_active;
+              let periode_merch_active       = [];
+              let total_merch_active         = [];
 
-              for (var i = 0; i < date_merch_regis.length; i++) {
-                periode_merch_regis.push(date_merch_regis[i].periode);
-                total_merch_regis.push(date_merch_regis[i].total);
+              let data_detail_transaksi      = data.detail_transaksi;
+              let for_detail_transaksi  = [];
+
+              for (var i = 0; i < data_merch_regis.length; i++) {
+                periode_merch_regis.push(data_merch_regis[i].periode);
+                total_merch_regis.push(data_merch_regis[i].total);
               }
 
               for (var i = 0; i < data_new_user.length; i++) {
@@ -119,14 +122,23 @@ function loadsalesdetail(table){
                 total_active_user.push(data_active_user[i].total);
               }
 
-              for (var i = 0; i < date_merch_ver.length; i++) {
-                periode_merch_ver.push(date_merch_ver[i].periode);
-                total_merch_ver.push(date_merch_ver[i].total);
+              for (var i = 0; i < data_merch_ver.length; i++) {
+                periode_merch_ver.push(data_merch_ver[i].periode);
+                total_merch_ver.push(data_merch_ver[i].total);
               }
 
-              for (var i = 0; i < date_merch_active.length; i++) {
-                periode_merch_active.push(date_merch_active[i].periode);
-                total_merch_active.push(date_merch_active[i].total);
+              for (var i = 0; i < data_merch_active.length; i++) {
+                periode_merch_active.push(data_merch_active[i].periode);
+                total_merch_active.push(data_merch_active[i].total);
+              }
+
+              for (var i = 0; i < data_detail_transaksi.length; i++) {
+                let dat = {
+                              x: data_detail_transaksi[i].province ? data_detail_transaksi[i].province : 'None' ,
+                              y: data_detail_transaksi[i].total
+                            }
+
+                for_detail_transaksi.push(dat);
               }
 
               var options_merch_regis = {
@@ -140,6 +152,7 @@ function loadsalesdetail(table){
               },
               plotOptions: {
                 bar: {
+                  // distributed: true,
                   borderRadius: 10,
                   dataLabels: {
                     position: 'top', // top, center, bottom
@@ -443,6 +456,45 @@ function loadsalesdetail(table){
                   }
                   };
 
+              var options_detail_transaksi = {
+                series: [
+                {
+                  data: for_detail_transaksi
+                }
+              ],
+                legend: {
+                show: true
+              },
+              chart: {
+                height: 330,
+                type: 'treemap'
+              },
+              title: {
+                text: 'Total Transaksi Berdasarkan Provinsi',
+                align: 'center'
+              },
+              colors: [
+                '#3B93A5',
+                '#F7B844',
+                '#ADD8C7',
+                '#EC3C65',
+                '#CDD7B6',
+                '#C1F666',
+                '#D43F97',
+                '#1E5D8C',
+                '#421243',
+                '#7F94B0',
+                '#EF6537',
+                '#C0ADDB'
+              ],
+              plotOptions: {
+                treemap: {
+                  distributed: true,
+                  enableShades: false
+                }
+              }
+              };
+
               var chart_merch_regis = new ApexCharts(document.querySelector("#chart-apex-regis"), options_merch_regis);
               chart_merch_regis.render();
 
@@ -457,6 +509,9 @@ function loadsalesdetail(table){
 
               var chart_merch_active = new ApexCharts(document.querySelector("#chart-apex-active"), options_merch_active);
               chart_merch_active.render();
+
+              var chart_detail_transaksi = new ApexCharts(document.querySelector("#chart-apex-data-transaksi"), options_detail_transaksi);
+              chart_detail_transaksi.render();
           }
       }
     }
