@@ -255,40 +255,6 @@ class JsondataController extends \Application\Master\GlobalActionController
                                 $detail_merchant_active = $model->loadGlobal("count(*) as total, periode", 'dma_digibiz_mytds_dxb_bonum_dashboard_v', "lastdatetransaction != '' GROUP BY periode ORDER BY periode asc");
                                 $detail_transaksi       = $model->loadGlobal("sum(totalTransaction) as total, province", 'dma_digibiz_bonum_user', "totalTransaction != 0 and totalTransaction > 0 group by province");
                             break;
-                          case 'digi%20clinic':
-                                $total_traffic = $model->loadGlobal("sum(`usage`) as total_traffic", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
-                                $total_poc     = $model->loadGlobal("sum(cnt_demo) as total_poc", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', "status = 'demo'");
-                                $new_user      = $model->loadGlobal("sum(cnt_register) as new_user", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', "status = 'register'");
-                                $active_user   = $model->loadGlobal("count(cnt_beroprasi) as active_user", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', 'cnt_beroprasi = 1');
-                                $churn_rate    = $model->loadGlobal("count(cnt_beroprasi) as churn_rate", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', 'cnt_beroprasi = 0');
-                                $total_expense = $model->loadGlobal("sum(price) as total_expense", 'dma_digibiz_mytds_dxb_digiclinic_dashboard_v', '');
-                            break;
-                          case 'digi%20erp':
-                                $total_traffic = $model->loadGlobal("sum(total_user) as total_traffic", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
-                                $total_poc     = $model->loadGlobal("sum(jml_trial) as total_poc", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
-                                $new_user      = $model->loadGlobal("count(payment_date) as new_user", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', "payment_date != ''");
-                                $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', 'is_active = 1');
-                                $churn_rate    = $model->loadGlobal("count(end_date) as churn_rate", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', 'is_active = 0');
-                                $total_expense = $model->loadGlobal("sum(total_price) as total_expense", 'dma_digibiz_mytds_dxb_digierp_dashboard_v', '');
-                            break;
-                          case 'digi%20hotel':
-                                $total_traffic = $model->loadGlobal("sum(jml_tamu) as total_traffic", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
-                                $total_poc     = $model->loadGlobal("sum(jml_trial) as total_poc", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
-                                $new_user      = $model->loadGlobal("count(registration_date) as new_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', "");
-                                $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 1');
-                                $churn_rate    = $model->loadGlobal("count(end_date) as churn_rate", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 0');
-                                $total_expense = $model->loadGlobal("sum(total_price) as total_expense", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
-                                $income        = $model->loadGlobal("sum(revenue) as income", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', '');
-                            break;
-                          case 'sakoo':
-                                $total_traffic = $model->loadGlobal("count(id_trx) as total_traffic", 'dma_sakoo_list_transaction', '');
-                                $new_user      = $model->loadGlobal("count(create_date) as new_user", 'dma_digibiz_sakoo_user', "");
-                                // $active_user   = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 1');
-                                // $churn_rate    = $model->loadGlobal("count(end_date) as active_user", 'dma_digibiz_mytds_dxb_digihotel_dashboard_v', 'jml_aktif = 0');
-                                $total_expense = $model->loadGlobal("(sum(harga_beli) * sum(qty)) as total_expense", 'dma_sakoo_list_transaction', '');
-                                $income        = $model->loadGlobal("(sum(harga_jual) * sum(qty)) - (sum(harga_beli) * sum(qty)) as income", 'dma_sakoo_list_transaction', '');
-                            break;
-
                           default:
                             // code...
                             break;
